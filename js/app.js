@@ -3,7 +3,7 @@
   'use strict';
 
   var C = window.CONTENT;
-  var KEY = 'english_coach_v1';
+  var Store = window.ECStore;
   var BOX_DAYS = [0, 1, 3, 7, 14, 30];
 
   /* ================= i18n ================= */
@@ -86,18 +86,19 @@
   function defaultState() {
     return {
       v: 1, name: '', lang: 'tr', rate: 0.9, voice: '', created: today(), placed: null, units: {}, srs: {},
-      mistakes: [], skill: {}, hist: [], xp: 0, days: [], streak: { last: '', n: 0 }, hw: null, writings: [], exams: {}, packs: []
+      mistakes: [], skill: {}, hist: [], xp: 0, days: [], streak: { last: '', n: 0 }, hw: null, writings: [], exams: {}
     };
   }
-  var S;
-  function load() {
-    try {
-      var r = localStorage.getItem(KEY);
-      if (r) { return Object.assign(defaultState(), JSON.parse(r)); }
-    } catch (e) { /* ignore */ }
-    return defaultState();
-  }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* ignore */ } }
+  var S, PID = null;
+  /* localStorage can throw (private mode, blocked site data); fall back to memory so the app still runs. */
+  var LS = (function () {
+    try { var s = window.localStorage; s.setItem('ec_probe', '1'); s.removeItem('ec_probe'); return s; }
+    catch (e) { var m = {}; return { getItem: function (k) { return k in m ? m[k] : null; }, setItem: function (k, v) { m[k] = String(v); }, removeItem: function (k) { delete m[k]; } }; }
+  })();
+  function openProfile(id) { PID = id; Store.setActive(LS, id); S = Store.loadProfile(LS, id, defaultState()); }
+  function save() { if (PID) Store.saveProfile(LS, PID, S); }
+  function profileName() { var m = Store.meta(LS, PID); return m ? m.name : ''; }
+  function setName(n) { n = n.trim(); S.name = n; if (n) Store.updateProfile(LS, PID, { name: n }); save(); }
   function t(k) {
     var d = I18N[S.lang] || I18N.tr;
     if (d[k] !== undefined) return d[k];
@@ -627,7 +628,7 @@
     if (!S.name) {
       var inp = h('input', { class: 'typedin', type: 'text', placeholder: t('name') });
       cards.push(h('div', { class: 'card' }, h('p', {}, t('welcomeName')), inp,
-        h('button', { class: 'btn small', onclick: function () { S.name = inp.value.trim(); save(); render(); } }, t('ok'))));
+        h('button', { class: 'btn small', onclick: function () { setName(inp.value); render(); } }, t('ok'))));
     }
     if (!S.placed && !Object.keys(S.units).length) {
       cards.push(h('div', { class: 'card accent' }, h('h2', {}, t('placementTitle')), h('p', {}, t('placementSub')),
@@ -993,7 +994,7 @@
     var packIn = h('input', { type: 'file', accept: 'application/json', hidden: true });
     fileIn.addEventListener('change', function () {
       var f = fileIn.files[0]; if (!f) return; var fr = new FileReader();
-      fr.onload = function () { try { S = Object.assign(defaultState(), JSON.parse(fr.result)); save(); toast(t('saved')); go('home'); } catch (e) { toast('Error'); } };
+      fr.onload = function () { try { var st = JSON.parse(fr.result); Store.addPacks(LS, st.packs || []); S = Object.assign(defaultState(), st); delete S.packs; save(); toast(t('saved')); go('home'); } catch (e) { toast('Error'); } };
       fr.readAsText(f);
     });
     packIn.addEventListener('change', function () {
@@ -1002,7 +1003,7 @@
         try {
           var pack = JSON.parse(fr.result), errs = mergePack(pack);
           if (errs.length) { alert(t('packErr') + '\n' + errs.slice(0, 8).join('\n')); return; }
-          S.packs.push(pack); save(); toast(t('packOk')); go('path');
+          Store.addPacks(LS, [pack]); toast(t('packOk')); go('path');
         } catch (e) { alert(t('packErr') + ' ' + e.message); }
       };
       fr.readAsText(f);
@@ -1014,21 +1015,24 @@
         h('label', { class: 'fld' }, t('rate')), rate,
         h('label', { class: 'fld' }, t('voice')), voiceSel,
         h('button', { class: 'btn secondary', onclick: function () { say('Hello! This is your English voice.', parseFloat(rate.value)); } }, '🔊 ' + t('testVoice')),
-        h('button', { class: 'btn', onclick: function () { S.name = nameIn.value.trim(); S.lang = langSel.value; S.rate = parseFloat(rate.value); S.voice = voiceSel.value; save(); toast(t('saved')); go('home'); } }, t('saveWriting'))),
+        h('button', { class: 'btn', onclick: function () { setName(nameIn.value); S.lang = langSel.value; S.rate = parseFloat(rate.value); S.voice = voiceSel.value; save(); toast(t('saved')); go('home'); } }, t('saveWriting'))),
       h('div', { class: 'card' },
         h('button', { class: 'btn secondary', onclick: function () { var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' })); a.download = 'english-coach-backup-' + today() + '.json'; a.click(); } }, '⬇ ' + t('backup')),
         h('button', { class: 'btn secondary', onclick: function () { fileIn.click(); } }, '⬆ ' + t('restore')), fileIn,
         h('button', { class: 'btn secondary', onclick: function () { packIn.click(); } }, '➕ ' + t('pack')), packIn,
-        h('button', { class: 'btn secondary', onclick: function () { if (confirm(t('resetAsk'))) { S = defaultState(); save(); go('home'); } } }, '🗑 ' + t('reset'))));
+        h('button', { class: 'btn secondary', onclick: function () { if (confirm(t('resetAsk'))) { var keep = { name: profileName(), lang: S.lang, rate: S.rate, voice: S.voice }; S = Object.assign(defaultState(), keep); save(); go('home'); } } }, '🗑 ' + t('reset'))));
   };
 
   /* ================= boot ================= */
   function boot() {
-    S = load();
-    S.packs.forEach(function (p) { try { mergePack(p); } catch (e) { /* ignore */ } });
+    Store.migrateV1(LS);
+    Store.packs(LS).forEach(function (p) { try { mergePack(p); } catch (e) { /* ignore */ } });
+    var idx = Store.index(LS);
+    if (!idx.profiles.length) { Store.createProfile(LS, { name: 'Profile 1' }, defaultState()); idx = Store.index(LS); }
+    openProfile(Store.meta(LS, idx.active) ? idx.active : idx.profiles[0].id);
     if (hasTts() && speechSynthesis.addEventListener) { try { speechSynthesis.addEventListener('voiceschanged', function () { /* voices ready */ }); } catch (e) { /* ignore */ } }
     render();
   }
-  window.EC = { mergePack: mergePack, state: function () { return S; }, go: go, snapshot: snapshotText, check: checkAnswer, similarity: similarity, norm: norm, t: t };
+  window.EC = { mergePack: mergePack, state: function () { return S; }, go: go, snapshot: snapshotText, check: checkAnswer, similarity: similarity, norm: norm, t: t, store: Store, ls: LS, profileId: function () { return PID; } };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();
