@@ -36,7 +36,7 @@
       examResult: 'Sınav sonucu', examPassed: 'Aşama sınavını geçtin!', examFail: 'Bu sefer olmadı. Eksik alanları tekrar edip yeniden dene.',
       writingToClaude: 'Yazını Claude ile değerlendir', skills: 'Becerilerin', unitsDone: 'Biten üniteler', wordsLearned: 'Öğrenilen kelime',
       daysStudied: 'Çalışılan gün', recent: 'Son sonuçlar', snapshot: 'Progress Snapshot (Claude\'a yapıştır)', copySnap: 'Snapshot\'ı kopyala',
-      backup: 'Yedekle (indir)', restore: 'Yedeği yükle', pack: 'İçerik paketi yükle', packOk: 'İçerik paketi yüklendi.', packErr: 'Paket hatası:',
+      restore: 'Yedeği yükle', pack: 'İçerik paketi yükle', packOk: 'İçerik paketi yüklendi.', packErr: 'Paket hatası:',
       name: 'Adın', language: 'Arayüz dili', rate: 'Konuşma hızı', voice: 'Ses', testVoice: 'Sesi dene', reset: 'Bu profilin ilerlemesini sil', resetAsk: 'Bu profilin tüm ilerlemesi silinsin mi? Bu geri alınamaz.',
       saved: 'Kaydedildi.', whatHeard: 'Ne duydun?', fixedLater: 'Hata tekrarı', noContent: 'Bu ünitenin içeriği henüz uygulamada yok. Claude projesinde çalış veya içerik paketi yükle.',
       mistakesLeft: 'tekrar edilecek hata', start1: 'Başlamak için', completePrev: 'Önceki üniteyi bitir', needPractice: 'Önce kelimeler, dilbilgisi ve alıştırmaları yap.',
@@ -47,7 +47,13 @@
       editProfile: 'Profili düzenle', newProfile: 'Yeni profil', profileName: 'Profil adı', icon: 'Simge', colour: 'Renk', create: 'Oluştur',
       deleteProfile: 'Profili sil', deleteAsk: 'Bu profilin tüm ilerlemesi kalıcı olarak silinir. Onaylamak için profil adını aynen yaz:',
       deleteGo: 'Kalıcı olarak sil', deleted: 'Profil silindi.', nameNeeded: 'Bir ad yaz.', switchProfile: 'Profil değiştir', edit: 'Düzenle',
-      unitsShort: 'ünite', localNote: 'Veriler sadece bu cihazda ve bu tarayıcıda saklanır. Hesap veya şifre yoktur. Tarayıcı verisini silersen ilerleme gider, cihaz değiştirmeden önce yedek al.'
+      unitsShort: 'ünite', localNote: 'Veriler sadece bu cihazda ve bu tarayıcıda saklanır. Hesap veya şifre yoktur. Tarayıcı verisini silersen ilerleme gider, cihaz değiştirmeden önce yedek al.',
+      backupOne: 'Bu profili yedekle (indir)', backupAll: 'Tüm profilleri yedekle (indir)', importFound: 'Dosyadaki profiller:',
+      addAsNew: 'Yeni profil olarak ekle', addAllNew: 'Hepsini yeni profil olarak ekle', replaceExisting: 'Mevcut bir profilin yerine koy',
+      replaceSame: 'Aynı profilleri güncelle, diğerlerini ekle', replaceWarn: 'Seçilen profilin şu anki ilerlemesi silinir ve yedektekiyle değişir.',
+      replaceGo: 'Yerine koy', imported: 'Yedek yüklendi.', cancel: 'Vazgeç',
+      errNotJson: 'Bu dosya okunamadı (JSON değil).', errUnknownShape: 'Bu dosya bir English Coach yedeği değil. Ayarlar ekranındaki yedekle düğmesiyle alınmış bir dosya seç.',
+      errBadState: 'Yedekteki ilerleme verisi eksik veya bozuk'
     },
     en: {
       home: 'Home', path: 'Path', homework: 'Homework', exams: 'Exams', progress: 'Progress', settings: 'Settings',
@@ -77,7 +83,7 @@
       examResult: 'Exam result', examPassed: 'You passed the stage exam!', examFail: 'Not this time. Review the weak areas and try again.',
       writingToClaude: 'Review your writing with Claude', skills: 'Your skills', unitsDone: 'Units done', wordsLearned: 'Words learned',
       daysStudied: 'Days studied', recent: 'Recent results', snapshot: 'Progress Snapshot (paste into Claude)', copySnap: 'Copy snapshot',
-      backup: 'Back up (download)', restore: 'Restore backup', pack: 'Load content pack', packOk: 'Content pack loaded.', packErr: 'Pack error:',
+      restore: 'Restore backup', pack: 'Load content pack', packOk: 'Content pack loaded.', packErr: 'Pack error:',
       name: 'Your name', language: 'Interface language', rate: 'Speech speed', voice: 'Voice', testVoice: 'Test voice', reset: 'Delete this profile\'s progress', resetAsk: 'Delete all progress in this profile? This cannot be undone.',
       saved: 'Saved.', whatHeard: 'What did you hear?', fixedLater: 'Mistake review', noContent: 'This unit is not in the app yet. Study it in the Claude project or load a content pack.',
       mistakesLeft: 'mistakes to review', start1: 'To start', completePrev: 'Finish the previous unit', needPractice: 'Do vocabulary, grammar and practice first.',
@@ -88,7 +94,13 @@
       editProfile: 'Edit profile', newProfile: 'New profile', profileName: 'Profile name', icon: 'Icon', colour: 'Colour', create: 'Create',
       deleteProfile: 'Delete profile', deleteAsk: 'All progress in this profile will be deleted for good. To confirm, type the profile name exactly:',
       deleteGo: 'Delete permanently', deleted: 'Profile deleted.', nameNeeded: 'Enter a name.', switchProfile: 'Switch profile', edit: 'Edit',
-      unitsShort: 'units', localNote: 'Your data is stored only on this device and in this browser. There is no account or password. Clearing browser data deletes your progress, so back up before changing device.'
+      unitsShort: 'units', localNote: 'Your data is stored only on this device and in this browser. There is no account or password. Clearing browser data deletes your progress, so back up before changing device.',
+      backupOne: 'Back up this profile (download)', backupAll: 'Back up all profiles (download)', importFound: 'Profiles in this file:',
+      addAsNew: 'Add as new profile', addAllNew: 'Add all as new profiles', replaceExisting: 'Replace an existing profile',
+      replaceSame: 'Replace matching profiles, add the rest', replaceWarn: 'The current progress of the chosen profile will be overwritten by the backup.',
+      replaceGo: 'Replace', imported: 'Backup restored.', cancel: 'Cancel',
+      errNotJson: 'This file could not be read (it is not JSON).', errUnknownShape: 'This file is not an English Coach backup. Choose a file made with the back up button in Settings.',
+      errBadState: 'The progress data in this backup is missing or damaged'
     }
   };
 
@@ -974,6 +986,7 @@
     var topTags = Object.keys(tags).sort(function (a, b) { return tags[b] - tags[a]; }).slice(0, 4).map(function (k) { return k + ' (x' + tags[k] + ')'; });
     return ['PROGRESS SNAPSHOT (from the English Coach app)',
       'Date: ' + td,
+      'Learner: ' + (profileName() || S.name || 'unnamed'),
       'Stage and unit: ' + (cu ? cu.stage + ', unit ' + cu.id + ' ' + cu.title : (S.placed ? 'placement start ' + S.placed.start : 'not started')),
       'Sessions completed: ' + S.days.length + ' days studied, streak ' + S.streak.n,
       "Today's goal and result: " + (todayHist.length ? todayHist.map(function (x) { return x.t + (x.id ? ' ' + x.id : '') + ' ' + x.score + '%'; }).join('; ') : 'no activity yet'),
@@ -1078,18 +1091,57 @@
   };
 
   /* ---------- settings ---------- */
-  VIEWS.settings = function () {
+  /* ---------- backup ---------- */
+  function download(name, obj) {
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(new Blob([JSON.stringify(obj, null, 1)], { type: 'application/json' }));
+    a.download = name; a.click();
+  }
+  function slug(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/^-+|-+$/g, '') || 'profile'; }
+  var pendingImport = null;
+  function importError(e) {
+    var msg = { notJson: t('errNotJson'), badState: t('errBadState') }[e.code] || t('errUnknownShape');
+    return msg + (e.code === 'badState' && e.detail ? ' (' + e.detail + ')' : '');
+  }
+  function finishImport(ids) {
+    pendingImport.packs.forEach(function (p) { try { mergePack(p); } catch (e) { /* ignore */ } });
+    pendingImport = null;
+    if (PID && ids.indexOf(PID) >= 0) S = Store.loadProfile(LS, PID, defaultState());
+    toast(t('imported'));
+    go('profiles');
+  }
+  VIEWS.importBackup = function () {
+    var P = pendingImport;
+    if (!P) { go('settings'); return; }
+    var many = P.kind === 'all';
+    var targets = Store.index(LS).profiles;
+    var sel = h('select', { 'aria-label': t('replaceExisting') }, targets.map(function (m) { return h('option', { value: m.id }, m.emoji + ' ' + m.name); }));
+    if (PID) sel.value = PID;
+    var replaceBox = many ? null : h('div', { class: 'card' }, h('label', { class: 'fld' }, t('replaceExisting')), sel, h('p', { class: 'note' }, t('replaceWarn')),
+      h('button', { class: 'btn secondary danger', onclick: function () { finishImport(Store.importBackup(LS, P, 'replace', sel.value)); } }, t('replaceGo')));
+    bare().appendChild(h('div', {}, backRow(t('restore'), function () { pendingImport = null; go('settings'); }),
+      h('div', { class: 'card' }, h('p', {}, t('importFound')), h('ul', {}, P.items.map(function (it) { return h('li', {}, (it.profile.emoji || '') + ' ' + it.profile.name); })),
+        h('button', { class: 'btn', onclick: function () { finishImport(Store.importBackup(LS, P, 'new')); } }, many ? t('addAllNew') : t('addAsNew')),
+        many ? h('button', { class: 'btn secondary danger', onclick: function () { finishImport(Store.importBackup(LS, P, 'replace')); } }, t('replaceSame')) : null),
+      replaceBox,
+      h('button', { class: 'btn secondary', onclick: function () { pendingImport = null; go('settings'); } }, t('cancel'))));
+  };
+
+  VIEWS.settings = function (p) {
     var nameIn = h('input', { class: 'typedin', type: 'text', value: S.name });
     var langSel = h('select', {}, h('option', { value: 'tr' }, 'Türkçe'), h('option', { value: 'en' }, 'English'));
     langSel.value = S.lang;
     var rate = h('input', { type: 'range', min: '0.6', max: '1.1', step: '0.05', value: String(S.rate) });
     var voiceSel = h('select', {}, h('option', { value: '' }, 'Auto (en-GB)'));
     if (hasTts()) { (speechSynthesis.getVoices() || []).filter(function (v) { return /^en/i.test(v.lang); }).forEach(function (v) { voiceSel.appendChild(h('option', { value: v.name }, v.name + ' (' + v.lang + ')')); }); voiceSel.value = S.voice; }
-    var fileIn = h('input', { type: 'file', accept: 'application/json', hidden: true });
-    var packIn = h('input', { type: 'file', accept: 'application/json', hidden: true });
+    var fileIn = h('input', { type: 'file', accept: 'application/json,.json', hidden: true, 'data-role': 'restore' });
+    var packIn = h('input', { type: 'file', accept: 'application/json,.json', hidden: true, 'data-role': 'pack' });
     fileIn.addEventListener('change', function () {
       var f = fileIn.files[0]; if (!f) return; var fr = new FileReader();
-      fr.onload = function () { try { var st = JSON.parse(fr.result); Store.addPacks(LS, st.packs || []); S = Object.assign(defaultState(), st); delete S.packs; save(); toast(t('saved')); go('home'); } catch (e) { toast('Error'); } };
+      fr.onload = function () {
+        try { pendingImport = Store.parseBackup(String(fr.result)); } catch (e) { go('settings', { err: importError(e) }); return; }
+        go('importBackup');
+      };
       fr.readAsText(f);
     });
     packIn.addEventListener('change', function () {
@@ -1104,6 +1156,7 @@
       fr.readAsText(f);
     });
     layout('home', h('h1', {}, t('settings')),
+      p && p.err ? h('p', { class: 'fb bad', role: 'alert' }, p.err) : null,
       h('p', { class: 'note' }, '🔒 ' + t('localNote')),
       h('button', { class: 'btn secondary', onclick: function () { go('profiles'); } }, '👥 ' + t('profiles')),
       h('div', { class: 'card' },
@@ -1114,7 +1167,8 @@
         h('button', { class: 'btn secondary', onclick: function () { say('Hello! This is your English voice.', parseFloat(rate.value)); } }, '🔊 ' + t('testVoice')),
         h('button', { class: 'btn', onclick: function () { setName(nameIn.value); S.lang = langSel.value; S.rate = parseFloat(rate.value); S.voice = voiceSel.value; save(); toast(t('saved')); go('home'); } }, t('saveWriting'))),
       h('div', { class: 'card' },
-        h('button', { class: 'btn secondary', onclick: function () { var a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([JSON.stringify(S, null, 1)], { type: 'application/json' })); a.download = 'english-coach-backup-' + today() + '.json'; a.click(); } }, '⬇ ' + t('backup')),
+        h('button', { class: 'btn secondary', onclick: function () { save(); download('english-coach-' + slug(profileName()) + '-' + today() + '.json', Store.exportProfile(LS, PID)); } }, '⬇ ' + t('backupOne')),
+        h('button', { class: 'btn secondary', onclick: function () { save(); download('english-coach-all-profiles-' + today() + '.json', Store.exportAll(LS)); } }, '⬇ ' + t('backupAll')),
         h('button', { class: 'btn secondary', onclick: function () { fileIn.click(); } }, '⬆ ' + t('restore')), fileIn,
         h('button', { class: 'btn secondary', onclick: function () { packIn.click(); } }, '➕ ' + t('pack')), packIn,
         h('button', { class: 'btn secondary', onclick: function () { if (confirm(t('resetAsk'))) { var keep = { name: profileName(), lang: S.lang, rate: S.rate, voice: S.voice }; S = Object.assign(defaultState(), keep); save(); go('home'); } } }, '🗑 ' + t('reset'))));
