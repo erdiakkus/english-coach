@@ -5,6 +5,7 @@ const fs = require('fs');
 const path = require('path');
 const { execFileSync } = require('child_process');
 const { ROOT } = require('./helpers');
+const DASH = new RegExp('[' + String.fromCharCode(0x2013, 0x2014) + ']');
 
 function walk(dir, out) {
   fs.readdirSync(dir, { withFileTypes: true }).forEach(function (e) {
@@ -19,7 +20,7 @@ test('no em or en dashes in any text file', function () {
   const bad = [];
   walk(ROOT, []).filter(function (f) { return !/\.(png|ico)$/i.test(f); }).forEach(function (f) {
     const lines = fs.readFileSync(f, 'utf8').split('\n');
-    lines.forEach(function (l, i) { if (/[–—]/.test(l)) bad.push(path.relative(ROOT, f) + ':' + (i + 1)); });
+    lines.forEach(function (l, i) { if (DASH.test(l)) bad.push(path.relative(ROOT, f) + ':' + (i + 1)); });
   });
   assert.deepEqual(bad, []);
 });
