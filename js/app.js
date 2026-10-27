@@ -1029,6 +1029,6 @@
     if (hasTts() && speechSynthesis.addEventListener) { try { speechSynthesis.addEventListener('voiceschanged', function () { /* voices ready */ }); } catch (e) { /* ignore */ } }
     render();
   }
-  window.EC = { mergePack: mergePack, state: function () { return S; }, go: go, snapshot: snapshotText, check: checkAnswer, similarity: similarity, norm: norm };
+  window.EC = { mergePack: mergePack, state: function () { return S; }, go: go, snapshot: snapshotText, check: checkAnswer, similarity: similarity, norm: norm, t: t };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();
