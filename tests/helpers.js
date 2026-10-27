@@ -20,6 +20,9 @@ function boot(opts) {
         const v = opts.storage[k];
         win.localStorage.setItem(k, typeof v === 'string' ? v : JSON.stringify(v));
       });
+      if (opts.sw) Object.defineProperty(win.navigator, 'serviceWorker', { value: opts.sw, configurable: true });
+      if (opts.navigator) Object.keys(opts.navigator).forEach(function (k) { Object.defineProperty(win.navigator, k, { value: opts.navigator[k], configurable: true }); });
+      if (opts.before) opts.before(win);
       win.alerts = [];
       win.alert = function (m) { win.alerts.push(String(m)); };
       win.confirm = function () { return opts.confirm !== undefined ? opts.confirm : true; };

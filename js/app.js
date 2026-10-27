@@ -53,7 +53,7 @@
       replaceSame: 'Aynı profilleri güncelle, diğerlerini ekle', replaceWarn: 'Seçilen profilin şu anki ilerlemesi silinir ve yedektekiyle değişir.',
       replaceGo: 'Yerine koy', imported: 'Yedek yüklendi.', cancel: 'Vazgeç',
       errNotJson: 'Bu dosya okunamadı (JSON değil).', errUnknownShape: 'Bu dosya bir English Coach yedeği değil. Ayarlar ekranındaki yedekle düğmesiyle alınmış bir dosya seç.',
-      errBadState: 'Yedekteki ilerleme verisi eksik veya bozuk'
+      errBadState: 'Yedekteki ilerleme verisi eksik veya bozuk', newVersion: 'Yeni sürüm hazır.', reload: 'Yenile'
     },
     en: {
       home: 'Home', path: 'Path', homework: 'Homework', exams: 'Exams', progress: 'Progress', settings: 'Settings',
@@ -100,7 +100,7 @@
       replaceSame: 'Replace matching profiles, add the rest', replaceWarn: 'The current progress of the chosen profile will be overwritten by the backup.',
       replaceGo: 'Replace', imported: 'Backup restored.', cancel: 'Cancel',
       errNotJson: 'This file could not be read (it is not JSON).', errUnknownShape: 'This file is not an English Coach backup. Choose a file made with the back up button in Settings.',
-      errBadState: 'The progress data in this backup is missing or damaged'
+      errBadState: 'The progress data in this backup is missing or damaged', newVersion: 'A new version is available.', reload: 'Reload'
     }
   };
 
@@ -1174,12 +1174,35 @@
         h('button', { class: 'btn secondary', onclick: function () { if (confirm(t('resetAsk'))) { var keep = { name: profileName(), lang: S.lang, rate: S.rate, voice: S.voice }; S = Object.assign(defaultState(), keep); save(); go('home'); } } }, '🗑 ' + t('reset'))));
   };
 
+  /* ================= offline app (service worker) ================= */
+  var updating = false;
+  function showUpdate(worker) {
+    if (document.querySelector('.update')) return;
+    var bar = h('div', { class: 'update', role: 'status' }, h('span', {}, t('newVersion')),
+      h('button', { onclick: function () { updating = true; bar.querySelector('button').disabled = true; worker.postMessage({ type: 'SKIP_WAITING' }); } }, t('reload')));
+    document.body.appendChild(bar);
+  }
+  function registerSw() {
+    if (!('serviceWorker' in navigator) || !/^https?:$/.test(location.protocol)) return;
+    navigator.serviceWorker.addEventListener('controllerchange', function () { if (updating) { updating = false; location.reload(); } });
+    navigator.serviceWorker.register('sw.js').then(function (reg) {
+      function check(w) { if (w && navigator.serviceWorker.controller) showUpdate(w); }
+      check(reg.waiting);
+      reg.addEventListener('updatefound', function () {
+        var nw = reg.installing;
+        if (nw) nw.addEventListener('statechange', function () { if (nw.state === 'installed') check(nw); });
+      });
+      document.addEventListener('visibilitychange', function () { if (document.visibilityState === 'visible') reg.update().catch(function () { /* offline */ }); });
+    }).catch(function () { /* unsupported or blocked: the app still works online */ });
+  }
+
   /* ================= boot ================= */
   function boot() {
     Store.migrateV1(LS);
     Store.packs(LS).forEach(function (p) { try { mergePack(p); } catch (e) { /* ignore */ } });
     if (hasTts() && speechSynthesis.addEventListener) { try { speechSynthesis.addEventListener('voiceschanged', function () { /* voices ready */ }); } catch (e) { /* ignore */ } }
     enterApp();
+    registerSw();
   }
   window.EC = { mergePack: mergePack, state: function () { return S; }, go: go, snapshot: snapshotText, check: checkAnswer, similarity: similarity, norm: norm, t: t, store: Store, ls: LS, profileId: function () { return PID; } };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
