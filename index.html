@@ -98,6 +98,23 @@ label.fld{display:block;margin:10px 0 4px;font-weight:600}
 select{font:inherit;padding:10px;border-radius:12px;border:2px solid var(--line);background:var(--card);color:var(--ink);width:100%}
 .check{display:flex;gap:10px;align-items:flex-start;margin:8px 0}
 .check input{width:22px;height:22px;margin-top:2px}
+.me{width:44px;height:44px;border-radius:50%;border:0;font-size:1.4rem;display:inline-flex;align-items:center;justify-content:center;padding:0;flex:none}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.pcard{position:relative;background:var(--card);border:1px solid var(--line);border-radius:var(--radius);color:inherit;padding:0;min-width:0}
+.pcard.cur{border-color:var(--accent);box-shadow:0 0 0 2px var(--soft)}
+.pmain,.padd{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:100%;min-height:190px;background:transparent;border:0;color:inherit;padding:18px 10px 14px;text-align:center}
+.pcard.padd{border:2px dashed var(--line)}
+.pedit{position:absolute;top:4px;right:4px;width:44px;height:44px;border:0;background:transparent;color:var(--muted);font-size:1.2rem}
+.pname{font-weight:700;font-size:1.1rem;overflow-wrap:anywhere}
+.avatar{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;font-size:1.3rem;background:var(--soft);color:var(--accent);flex:none}
+.avatar.lg{width:72px;height:72px;font-size:2.4rem;margin-bottom:6px}
+.avatar.xl{width:96px;height:96px;font-size:3.2rem}
+.center{text-align:center}
+.swatches{display:flex;flex-wrap:wrap;gap:8px}
+.sw{width:48px;height:48px;border-radius:12px;border:2px solid var(--line);background:var(--card);font-size:1.5rem;padding:0}
+.sw.on{border-color:var(--ink);box-shadow:0 0 0 3px var(--accent)}
+.btn.danger{background:var(--bad);color:#fff}
+.btn.secondary.danger{background:transparent;color:var(--bad);border-color:var(--bad)}
 [hidden]{display:none!important}
 </style>
 </head>

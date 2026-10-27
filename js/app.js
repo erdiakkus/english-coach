@@ -37,12 +37,17 @@
       writingToClaude: 'Yazını Claude ile değerlendir', skills: 'Becerilerin', unitsDone: 'Biten üniteler', wordsLearned: 'Öğrenilen kelime',
       daysStudied: 'Çalışılan gün', recent: 'Son sonuçlar', snapshot: 'Progress Snapshot (Claude\'a yapıştır)', copySnap: 'Snapshot\'ı kopyala',
       backup: 'Yedekle (indir)', restore: 'Yedeği yükle', pack: 'İçerik paketi yükle', packOk: 'İçerik paketi yüklendi.', packErr: 'Paket hatası:',
-      name: 'Adın', language: 'Arayüz dili', rate: 'Konuşma hızı', voice: 'Ses', testVoice: 'Sesi dene', reset: 'Tüm verileri sil', resetAsk: 'Tüm ilerleme silinsin mi? Bu geri alınamaz.',
+      name: 'Adın', language: 'Arayüz dili', rate: 'Konuşma hızı', voice: 'Ses', testVoice: 'Sesi dene', reset: 'Bu profilin ilerlemesini sil', resetAsk: 'Bu profilin tüm ilerlemesi silinsin mi? Bu geri alınamaz.',
       saved: 'Kaydedildi.', whatHeard: 'Ne duydun?', fixedLater: 'Hata tekrarı', noContent: 'Bu ünitenin içeriği henüz uygulamada yok. Claude projesinde çalış veya içerik paketi yükle.',
       mistakesLeft: 'tekrar edilecek hata', start1: 'Başlamak için', completePrev: 'Önceki üniteyi bitir', needPractice: 'Önce kelimeler, dilbilgisi ve alıştırmaları yap.',
       skillNames: { vocab: 'Kelime', grammar: 'Dilbilgisi', listening: 'Dinleme', speaking: 'Konuşma', reading: 'Okuma' },
       welcomeName: 'Adın ne? (ayarlardan değiştirebilirsin)', ok: 'Tamam', close: 'Kapat', skipped: 'Atlandı', hwDoneBadge: 'Yapıldı',
-      selfRatedNote: 'Not: Bazı konuşma maddeleri kendi değerlendirmendi.'
+      selfRatedNote: 'Not: Bazı konuşma maddeleri kendi değerlendirmendi.',
+      whoLearning: 'Kim çalışıyor?', profiles: 'Profiller', addProfile: 'Yeni profil', lastUsed: 'Son kullanım', notYet: 'henüz yok',
+      editProfile: 'Profili düzenle', newProfile: 'Yeni profil', profileName: 'Profil adı', icon: 'Simge', colour: 'Renk', create: 'Oluştur',
+      deleteProfile: 'Profili sil', deleteAsk: 'Bu profilin tüm ilerlemesi kalıcı olarak silinir. Onaylamak için profil adını aynen yaz:',
+      deleteGo: 'Kalıcı olarak sil', deleted: 'Profil silindi.', nameNeeded: 'Bir ad yaz.', switchProfile: 'Profil değiştir', edit: 'Düzenle',
+      unitsShort: 'ünite', localNote: 'Veriler sadece bu cihazda ve bu tarayıcıda saklanır. Hesap veya şifre yoktur. Tarayıcı verisini silersen ilerleme gider, cihaz değiştirmeden önce yedek al.'
     },
     en: {
       home: 'Home', path: 'Path', homework: 'Homework', exams: 'Exams', progress: 'Progress', settings: 'Settings',
@@ -73,12 +78,17 @@
       writingToClaude: 'Review your writing with Claude', skills: 'Your skills', unitsDone: 'Units done', wordsLearned: 'Words learned',
       daysStudied: 'Days studied', recent: 'Recent results', snapshot: 'Progress Snapshot (paste into Claude)', copySnap: 'Copy snapshot',
       backup: 'Back up (download)', restore: 'Restore backup', pack: 'Load content pack', packOk: 'Content pack loaded.', packErr: 'Pack error:',
-      name: 'Your name', language: 'Interface language', rate: 'Speech speed', voice: 'Voice', testVoice: 'Test voice', reset: 'Delete all data', resetAsk: 'Delete all progress? This cannot be undone.',
+      name: 'Your name', language: 'Interface language', rate: 'Speech speed', voice: 'Voice', testVoice: 'Test voice', reset: 'Delete this profile\'s progress', resetAsk: 'Delete all progress in this profile? This cannot be undone.',
       saved: 'Saved.', whatHeard: 'What did you hear?', fixedLater: 'Mistake review', noContent: 'This unit is not in the app yet. Study it in the Claude project or load a content pack.',
       mistakesLeft: 'mistakes to review', start1: 'To start', completePrev: 'Finish the previous unit', needPractice: 'Do vocabulary, grammar and practice first.',
       skillNames: { vocab: 'Vocabulary', grammar: 'Grammar', listening: 'Listening', speaking: 'Speaking', reading: 'Reading' },
       welcomeName: 'What is your name? (you can change it in settings)', ok: 'OK', close: 'Close', skipped: 'Skipped', hwDoneBadge: 'Done',
-      selfRatedNote: 'Note: some speaking items were self-rated.'
+      selfRatedNote: 'Note: some speaking items were self-rated.',
+      whoLearning: 'Who is learning?', profiles: 'Profiles', addProfile: 'New profile', lastUsed: 'Last used', notYet: 'not yet',
+      editProfile: 'Edit profile', newProfile: 'New profile', profileName: 'Profile name', icon: 'Icon', colour: 'Colour', create: 'Create',
+      deleteProfile: 'Delete profile', deleteAsk: 'All progress in this profile will be deleted for good. To confirm, type the profile name exactly:',
+      deleteGo: 'Delete permanently', deleted: 'Profile deleted.', nameNeeded: 'Enter a name.', switchProfile: 'Switch profile', edit: 'Edit',
+      unitsShort: 'units', localNote: 'Your data is stored only on this device and in this browser. There is no account or password. Clearing browser data deletes your progress, so back up before changing device.'
     }
   };
 
@@ -98,7 +108,12 @@
   function openProfile(id) { PID = id; Store.setActive(LS, id); S = Store.loadProfile(LS, id, defaultState()); }
   function save() { if (PID) Store.saveProfile(LS, PID, S); }
   function profileName() { var m = Store.meta(LS, PID); return m ? m.name : ''; }
-  function setName(n) { n = n.trim(); S.name = n; if (n) Store.updateProfile(LS, PID, { name: n }); save(); }
+  function setName(n) { n = n.trim(); S.name = n; if (n) S.name = Store.updateProfile(LS, PID, { name: n }).name; save(); }
+  /* The profile name is the source of truth; the state's name field mirrors it. */
+  function syncName(id, name) {
+    if (id === PID) { S.name = name; save(); return; }
+    var st = Store.loadProfile(LS, id, defaultState()); st.name = name; Store.saveProfile(LS, id, st);
+  }
   function t(k) {
     var d = I18N[S.lang] || I18N.tr;
     if (d[k] !== undefined) return d[k];
@@ -592,8 +607,11 @@
   function go(name, p) { view = { name: name, p: p || {} }; render(); }
   function topbar() {
     var due = dueItems().length;
+    var me = Store.meta(LS, PID) || {};
     return h('div', { class: 'topbar' },
-      h('div', { class: 'brand' }, 'English Coach'),
+      h('div', { class: 'row' },
+        h('button', { class: 'me', style: 'background:' + me.color, 'aria-label': t('switchProfile') + ': ' + me.name, title: me.name, onclick: function () { go('profiles'); } }, me.emoji),
+        h('div', { class: 'brand' }, 'English Coach')),
       h('div', { class: 'chips' },
         h('span', { class: 'chip amber' }, '🔥 ' + S.streak.n + ' ' + t('streak')),
         h('span', { class: 'chip' }, '⭐ ' + S.xp),
@@ -982,6 +1000,83 @@
       h('div', { class: 'card' }, h('h3', {}, t('snapshot')), h('pre', { class: 'snap' }, snap), h('button', { class: 'btn', onclick: function () { copyText(snap); } }, '📋 ' + t('copySnap'))));
   };
 
+  /* ---------- profiles ---------- */
+  function fmtWhen(iso) { return iso ? fmtDate(new Date(iso)) : t('notYet'); }
+  function profileStats(id) {
+    var st = id === PID ? S : Store.loadProfile(LS, id, defaultState());
+    var us = C.units.filter(playable);
+    return { done: us.filter(function (u) { return st.units[u.id] && st.units[u.id].done; }).length, total: us.length, streak: st.streak.n };
+  }
+  function avatar(m, size) { return h('span', { class: 'avatar' + (size ? ' ' + size : ''), style: 'background:' + m.color, 'aria-hidden': 'true' }, m.emoji); }
+  function switchTo(id) { save(); openProfile(id); go('home'); }
+  /* Used at boot and after a deletion: the picker when 2 or more profiles exist, otherwise open the only one. */
+  function enterApp() {
+    var idx = Store.index(LS);
+    if (!idx.profiles.length) { Store.createProfile(LS, { name: 'Profile 1' }, defaultState()); idx = Store.index(LS); }
+    var last = Store.meta(LS, idx.active) ? idx.active : idx.profiles[0].id;
+    if (idx.profiles.length > 1) { PID = null; S = Store.loadProfile(LS, last, defaultState()); go('profiles'); }
+    else { openProfile(last); go('home'); }
+  }
+  function bare() { var root = clear($app()); var main = h('div', { class: 'main' }); root.appendChild(main); window.scrollTo(0, 0); return main; }
+  function backRow(title, onBack) {
+    return h('div', { class: 'row' }, onBack ? h('button', { class: 'ghost', 'aria-label': t('back'), onclick: onBack }, '←') : null, h('h1', {}, title));
+  }
+
+  VIEWS.profiles = function () {
+    var cards = Store.index(LS).profiles.map(function (m) {
+      var st = profileStats(m.id);
+      return h('div', { class: 'pcard' + (m.id === PID ? ' cur' : '') },
+        h('button', { class: 'pmain', 'data-pid': m.id, onclick: function () { switchTo(m.id); } },
+          avatar(m, 'lg'), h('span', { class: 'pname' }, m.name),
+          h('span', { class: 'small muted' }, '📘 ' + st.done + '/' + st.total + ' ' + t('unitsShort') + '   🔥 ' + st.streak),
+          h('span', { class: 'small muted' }, t('lastUsed') + ': ' + fmtWhen(m.lastUsed))),
+        h('button', { class: 'pedit', 'aria-label': t('edit') + ': ' + m.name, onclick: function () { go('profileEdit', { id: m.id }); } }, '✎'));
+    });
+    cards.push(h('button', { class: 'pcard padd', onclick: function () { go('profileEdit', {}); } }, h('span', { class: 'avatar lg' }, '+'), h('span', { class: 'pname' }, t('addProfile'))));
+    bare().appendChild(h('div', {}, backRow(t('whoLearning'), PID ? function () { go('home'); } : null), h('div', { class: 'pgrid' }, cards)));
+  };
+
+  VIEWS.profileEdit = function (p) {
+    var m = p.id ? Store.meta(LS, p.id) : null, n = Store.index(LS).profiles.length;
+    var pick = { emoji: m ? m.emoji : Store.EMOJIS[n % Store.EMOJIS.length], color: m ? m.color : Store.COLORS[n % Store.COLORS.length] };
+    var nameIn = h('input', { class: 'typedin', type: 'text', maxlength: '30', value: m ? m.name : '', autocomplete: 'off', 'aria-label': t('profileName') });
+    var preview = h('div', { class: 'center' }), emojis = h('div', { class: 'swatches' }), colours = h('div', { class: 'swatches' });
+    function draw() {
+      clear(preview); preview.appendChild(avatar(pick, 'xl'));
+      clear(emojis); Store.EMOJIS.forEach(function (e) { emojis.appendChild(h('button', { class: 'sw' + (e === pick.emoji ? ' on' : ''), 'aria-pressed': String(e === pick.emoji), onclick: function () { pick.emoji = e; draw(); } }, e)); });
+      clear(colours); Store.COLORS.forEach(function (c) { colours.appendChild(h('button', { class: 'sw' + (c === pick.color ? ' on' : ''), style: 'background:' + c, 'aria-label': c, 'aria-pressed': String(c === pick.color), onclick: function () { pick.color = c; draw(); } })); });
+    }
+    function submit() {
+      var name = nameIn.value.trim();
+      if (!name) { toast(t('nameNeeded')); return; }
+      if (m) { syncName(m.id, Store.updateProfile(LS, m.id, { name: name, emoji: pick.emoji, color: pick.color }).name); go('profiles'); return; }
+      var np = Store.createProfile(LS, { name: name, emoji: pick.emoji, color: pick.color }, defaultState());
+      save(); openProfile(np.id); S.name = np.name; save(); go('home');
+    }
+    nameIn.addEventListener('keydown', function (e) { if (e.key === 'Enter') submit(); });
+    draw();
+    bare().appendChild(h('div', {}, backRow(m ? t('editProfile') : t('newProfile'), function () { go('profiles'); }),
+      h('div', { class: 'card' }, preview, h('label', { class: 'fld' }, t('profileName')), nameIn, h('label', { class: 'fld' }, t('icon')), emojis,
+        h('label', { class: 'fld' }, t('colour')), colours, h('button', { class: 'btn', onclick: submit }, m ? t('saveWriting') : t('create'))),
+      m ? h('button', { class: 'btn secondary danger', onclick: function () { go('profileDelete', { id: m.id }); } }, '🗑 ' + t('deleteProfile')) : null));
+  };
+
+  VIEWS.profileDelete = function (p) {
+    var m = Store.meta(LS, p.id);
+    if (!m) { go('profiles'); return; }
+    var inp = h('input', { class: 'typedin', type: 'text', autocomplete: 'off', autocapitalize: 'off', spellcheck: 'false', 'aria-label': t('profileName') });
+    var del = h('button', {
+      class: 'btn danger', disabled: true, onclick: function () {
+        if (inp.value.trim() !== m.name) return;
+        Store.deleteProfile(LS, m.id); toast(t('deleted'));
+        if (m.id === PID) { PID = null; enterApp(); } else go('profiles');
+      }
+    }, t('deleteGo'));
+    inp.addEventListener('input', function () { del.disabled = inp.value.trim() !== m.name; });
+    bare().appendChild(h('div', {}, backRow(t('deleteProfile'), function () { go('profileEdit', { id: m.id }); }),
+      h('div', { class: 'card' }, h('div', { class: 'row' }, avatar(m), h('b', {}, m.name)), h('p', {}, t('deleteAsk')), inp, del)));
+  };
+
   /* ---------- settings ---------- */
   VIEWS.settings = function () {
     var nameIn = h('input', { class: 'typedin', type: 'text', value: S.name });
@@ -1009,6 +1104,8 @@
       fr.readAsText(f);
     });
     layout('home', h('h1', {}, t('settings')),
+      h('p', { class: 'note' }, '🔒 ' + t('localNote')),
+      h('button', { class: 'btn secondary', onclick: function () { go('profiles'); } }, '👥 ' + t('profiles')),
       h('div', { class: 'card' },
         h('label', { class: 'fld' }, t('name')), nameIn,
         h('label', { class: 'fld' }, t('language')), langSel,
@@ -1027,11 +1124,8 @@
   function boot() {
     Store.migrateV1(LS);
     Store.packs(LS).forEach(function (p) { try { mergePack(p); } catch (e) { /* ignore */ } });
-    var idx = Store.index(LS);
-    if (!idx.profiles.length) { Store.createProfile(LS, { name: 'Profile 1' }, defaultState()); idx = Store.index(LS); }
-    openProfile(Store.meta(LS, idx.active) ? idx.active : idx.profiles[0].id);
     if (hasTts() && speechSynthesis.addEventListener) { try { speechSynthesis.addEventListener('voiceschanged', function () { /* voices ready */ }); } catch (e) { /* ignore */ } }
-    render();
+    enterApp();
   }
   window.EC = { mergePack: mergePack, state: function () { return S; }, go: go, snapshot: snapshotText, check: checkAnswer, similarity: similarity, norm: norm, t: t, store: Store, ls: LS, profileId: function () { return PID; } };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();

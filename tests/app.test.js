@@ -3,29 +3,7 @@ const test = require('node:test');
 const assert = require('node:assert');
 const { boot, readPack } = require('./helpers');
 
-const WRITING = 'Hello. My name is Ayla. Thank you very much for the help today. I am happy here and I like it.';
-
-function writeAndSave(d) {
-  const ta = d.doc.querySelector('textarea');
-  ta.value = WRITING;
-  ta.dispatchEvent(new d.win.Event('input'));
-  d.click(d.t('saveWriting'));
-}
-
-function doUnit(d, id) {
-  d.EC.go('unit', { id: id });
-  d.click(new RegExp(d.t('vocab') + '$'));
-  while (!d.has(d.t('miniTest'))) d.click(d.t('next'));
-  d.click(d.t('miniTest'));
-  d.finishQuiz(true); d.click(d.t('continue'));
-  d.click(new RegExp(d.t('grammar') + '$')); d.click(d.t('understood'));
-  ['practice', 'listeningStep', 'speakingStep'].forEach(function (k) {
-    d.click(new RegExp(d.t(k) + '$')); d.finishQuiz(true); d.click(d.t('continue'));
-  });
-  d.click(new RegExp(d.t('reading') + '$')); d.click(d.t('answerQs')); d.finishQuiz(true); d.click(d.t('continue'));
-  d.click(new RegExp(d.t('writing') + '$')); writeAndSave(d);
-  d.click(new RegExp(d.t('test') + '$')); d.finishQuiz(true); d.click(d.t('continue'));
-}
+const { writeAndSave, doUnit } = require('./helpers');
 
 test('boot renders home in Turkish with placement card', async function () {
   const d = await boot();
