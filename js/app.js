@@ -53,7 +53,10 @@
       replaceSame: 'Aynı profilleri güncelle, diğerlerini ekle', replaceWarn: 'Seçilen profilin şu anki ilerlemesi silinir ve yedektekiyle değişir.',
       replaceGo: 'Yerine koy', imported: 'Yedek yüklendi.', cancel: 'Vazgeç',
       errNotJson: 'Bu dosya okunamadı (JSON değil).', errUnknownShape: 'Bu dosya bir English Coach yedeği değil. Ayarlar ekranındaki yedekle düğmesiyle alınmış bir dosya seç.',
-      errBadState: 'Yedekteki ilerleme verisi eksik veya bozuk', newVersion: 'Yeni sürüm hazır.', reload: 'Yenile'
+      errBadState: 'Yedekteki ilerleme verisi eksik veya bozuk', newVersion: 'Yeni sürüm hazır.', reload: 'Yenile',
+      srOffline: 'Konuşma tanıma internet bağlantısı ister. Şimdilik kendin söyle ve dürüstçe değerlendir:',
+      srStandalone: 'iPhone, ana ekrandan açılan uygulamada konuşma tanımaya izin vermiyor (Safari\'de çalışabilir). Şimdilik kendin değerlendir:',
+      srNoSound: 'Ses duyulmadı. Mikrofona yakın konuş ve tekrar dene.', online: 'Çevrimiçi', offline: 'Çevrimdışı', offlineNote: 'İnternet yok. Konuşma tanıma dışında her şey çalışır.'
     },
     en: {
       home: 'Home', path: 'Path', homework: 'Homework', exams: 'Exams', progress: 'Progress', settings: 'Settings',
@@ -100,7 +103,10 @@
       replaceSame: 'Replace matching profiles, add the rest', replaceWarn: 'The current progress of the chosen profile will be overwritten by the backup.',
       replaceGo: 'Replace', imported: 'Backup restored.', cancel: 'Cancel',
       errNotJson: 'This file could not be read (it is not JSON).', errUnknownShape: 'This file is not an English Coach backup. Choose a file made with the back up button in Settings.',
-      errBadState: 'The progress data in this backup is missing or damaged', newVersion: 'A new version is available.', reload: 'Reload'
+      errBadState: 'The progress data in this backup is missing or damaged', newVersion: 'A new version is available.', reload: 'Reload',
+      srOffline: 'Speech recognition needs an internet connection. For now, say it yourself and rate honestly:',
+      srStandalone: 'On iPhone, speech recognition is blocked in the home screen app (it may work in Safari). For now, rate yourself:',
+      srNoSound: 'No sound was heard. Speak close to the microphone and try again.', online: 'Online', offline: 'Offline', offlineNote: 'No internet. Everything except speech recognition still works.'
     }
   };
 
@@ -246,6 +252,27 @@
 
   /* ================= audio ================= */
   function hasTts() { return 'speechSynthesis' in window && typeof window.SpeechSynthesisUtterance !== 'undefined'; }
+  /* Browsers (iOS above all) block speech until the learner has tapped once, so nothing plays on its own before that.
+     The first tap also speaks a silent utterance, which unlocks speechSynthesis on iOS Safari. */
+  var gestured = false;
+  function onFirstGesture() {
+    if (gestured) return;
+    gestured = true;
+    if (!hasTts()) return;
+    try { speechSynthesis.getVoices(); var u = new SpeechSynthesisUtterance(' '); u.volume = 0; speechSynthesis.speak(u); } catch (e) { /* ignore */ }
+  }
+  ['pointerdown', 'touchend', 'keydown', 'click'].forEach(function (ev) { document.addEventListener(ev, onFirstGesture, true); });
+  function autoSay(text) { if (gestured) say(text); }
+  var voiceSelect = null;
+  function fillVoices(sel) {
+    var keep = sel.value || S.voice;
+    clear(sel).appendChild(h('option', { value: '' }, 'Auto (en-GB)'));
+    if (hasTts()) (speechSynthesis.getVoices() || []).filter(function (v) { return /^en/i.test(v.lang); }).forEach(function (v) { sel.appendChild(h('option', { value: v.name }, v.name + ' (' + v.lang + ')')); });
+    sel.value = keep;
+    if (sel.value !== keep) sel.value = '';
+  }
+  /* Voices load late (Chrome, Android); refresh the Settings list when they arrive. pickVoice reads them on every say(). */
+  function onVoicesChanged() { if (voiceSelect && document.body.contains(voiceSelect)) fillVoices(voiceSelect); }
   function pickVoice() {
     if (!hasTts()) return null;
     var vs = speechSynthesis.getVoices() || [];
@@ -260,6 +287,7 @@
     if (!hasTts()) return false;
     try {
       speechSynthesis.cancel();
+      if (speechSynthesis.paused) speechSynthesis.resume();
       var u = new SpeechSynthesisUtterance(text);
       u.lang = 'en-GB';
       var v = pickVoice(); if (v) u.voice = v;
@@ -281,6 +309,17 @@
     return wrap;
   }
   function getRecognizer() { return window.SpeechRecognition || window.webkitSpeechRecognition || null; }
+  function isIosStandalone() {
+    var ios = /iPad|iPhone|iPod/.test(navigator.userAgent || '') || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+    var standalone = navigator.standalone === true || !!(window.matchMedia && window.matchMedia('(display-mode: standalone)').matches);
+    return ios && standalone;
+  }
+  /* One line that says why speech recognition is not available, shown above the self-rating buttons. */
+  function srProblem(code) {
+    if (code === 'network' || navigator.onLine === false) return t('srOffline');
+    if (isIosStandalone() && code !== 'unknown') return t('srStandalone');
+    return code ? t('micErr') : t('noSpeech');
+  }
 
   /* ================= content access ================= */
   function playable(u) { return !!(u && u.vocab && u.exercises && u.grammar); }
@@ -490,7 +529,7 @@
       list.appendChild(b);
     });
     body.appendChild(list);
-    if (withAudio) setTimeout(function () { say(q.say); }, 250);
+    if (withAudio) setTimeout(function () { autoSay(q.say); }, 250);
   }
   R.mc = function (q, body, api) { mcRender(q, body, api, false); };
   R.listenmc = function (q, body, api) { mcRender(q, body, api, true); };
@@ -528,7 +567,7 @@
     var go1 = function () { typedCheck(q, inp, api, answers, q.say); };
     inp.addEventListener('keydown', function (e) { if (e.key === 'Enter') go1(); });
     api.setCheck(go1);
-    setTimeout(function () { say(q.say); }, 250);
+    setTimeout(function () { autoSay(q.say); }, 250);
   };
   R.order = function (q, body, api) {
     body.appendChild(h('p', { class: 'prompt' }, q.q || ''));
@@ -586,7 +625,7 @@
       selfBox.appendChild(h('button', { class: 'btn secondary', onclick: function () { api.result(false, '(self)', q.say, { self: true }); } }, t('selfNot')));
     }
     var SR = getRecognizer();
-    if (!SR) { body.appendChild(selfBox); selfButtons(t('noSpeech')); return; }
+    if (!SR || navigator.onLine === false) { body.appendChild(selfBox); selfButtons(srProblem(SR ? 'network' : '')); return; }
     var mic = h('button', { class: 'mic', 'aria-label': t('speak') }, '🎤');
     var busy = false;
     mic.addEventListener('click', function () {
@@ -605,9 +644,14 @@
         if (!ok && !mic._retried) { mic._retried = true; info.textContent = t('heard') + ': "' + bestTxt + '" (' + t('similarity') + ' ' + Math.round(best * 100) + '%). ' + t('tryAgain'); return; }
         api.result(ok, bestTxt, q.say, { msg: t('heard') + ': "' + bestTxt + '" (' + Math.round(best * 100) + '%)' });
       };
-      rec.onerror = function () { mic.classList.remove('on'); busy = false; info.textContent = ''; selfButtons(t('micErr')); };
+      rec.onerror = function (ev) {
+        mic.classList.remove('on'); busy = false; gotResult = true;
+        var code = ev && ev.error;
+        if (code === 'no-speech' || code === 'aborted') { info.textContent = t('srNoSound'); return; }
+        info.textContent = ''; selfButtons(srProblem(code || 'unknown'));
+      };
       rec.onend = function () { mic.classList.remove('on'); busy = false; if (!gotResult && info.textContent === t('listening')) { info.textContent = t('tryAgain'); } };
-      try { rec.start(); } catch (e) { busy = false; mic.classList.remove('on'); selfButtons(t('micErr')); }
+      try { rec.start(); } catch (e) { busy = false; mic.classList.remove('on'); selfButtons(srProblem('unknown')); }
     });
     body.appendChild(mic); body.appendChild(info); body.appendChild(selfBox);
     body.appendChild(h('button', { class: 'btn small secondary', onclick: function () { selfButtons(t('noSpeech')); } }, '...'));
@@ -1132,8 +1176,8 @@
     var langSel = h('select', {}, h('option', { value: 'tr' }, 'Türkçe'), h('option', { value: 'en' }, 'English'));
     langSel.value = S.lang;
     var rate = h('input', { type: 'range', min: '0.6', max: '1.1', step: '0.05', value: String(S.rate) });
-    var voiceSel = h('select', {}, h('option', { value: '' }, 'Auto (en-GB)'));
-    if (hasTts()) { (speechSynthesis.getVoices() || []).filter(function (v) { return /^en/i.test(v.lang); }).forEach(function (v) { voiceSel.appendChild(h('option', { value: v.name }, v.name + ' (' + v.lang + ')')); }); voiceSel.value = S.voice; }
+    var voiceSel = h('select', {});
+    fillVoices(voiceSel); voiceSelect = voiceSel;
     var fileIn = h('input', { type: 'file', accept: 'application/json,.json', hidden: true, 'data-role': 'restore' });
     var packIn = h('input', { type: 'file', accept: 'application/json,.json', hidden: true, 'data-role': 'pack' });
     fileIn.addEventListener('change', function () {
@@ -1174,6 +1218,17 @@
         h('button', { class: 'btn secondary', onclick: function () { if (confirm(t('resetAsk'))) { var keep = { name: profileName(), lang: S.lang, rate: S.rate, voice: S.voice }; S = Object.assign(defaultState(), keep); save(); go('home'); } } }, '🗑 ' + t('reset'))));
   };
 
+  /* ================= on-screen keyboard ================= */
+  /* While a text field has focus the bottom nav is hidden and the field is scrolled to the middle of the visible
+     area, so the keyboard never covers it. visualViewport resizes when the keyboard opens. */
+  function keepFocusVisible() {
+    function typingField(el) { return !!el && (el.tagName === 'TEXTAREA' || (el.tagName === 'INPUT' && /^(text|search|email|number)$/.test(el.type))); }
+    function show() { var el = document.activeElement; if (typingField(el) && el.scrollIntoView) { try { el.scrollIntoView({ block: 'center' }); } catch (e) { el.scrollIntoView(); } } }
+    document.addEventListener('focusin', function (e) { if (typingField(e.target)) { document.body.classList.add('typing'); setTimeout(show, 300); } });
+    document.addEventListener('focusout', function () { setTimeout(function () { if (!typingField(document.activeElement)) document.body.classList.remove('typing'); }, 50); });
+    if (window.visualViewport) window.visualViewport.addEventListener('resize', function () { setTimeout(show, 60); });
+  }
+
   /* ================= offline app (service worker) ================= */
   var updating = false;
   function showUpdate(worker) {
@@ -1200,10 +1255,17 @@
   function boot() {
     Store.migrateV1(LS);
     Store.packs(LS).forEach(function (p) { try { mergePack(p); } catch (e) { /* ignore */ } });
-    if (hasTts() && speechSynthesis.addEventListener) { try { speechSynthesis.addEventListener('voiceschanged', function () { /* voices ready */ }); } catch (e) { /* ignore */ } }
+    if (hasTts()) {
+      try {
+        if (speechSynthesis.addEventListener) speechSynthesis.addEventListener('voiceschanged', onVoicesChanged);
+        else speechSynthesis.onvoiceschanged = onVoicesChanged;
+        speechSynthesis.getVoices();
+      } catch (e) { /* ignore */ }
+    }
+    keepFocusVisible();
     enterApp();
     registerSw();
   }
-  window.EC = { mergePack: mergePack, state: function () { return S; }, go: go, snapshot: snapshotText, check: checkAnswer, similarity: similarity, norm: norm, t: t, store: Store, ls: LS, profileId: function () { return PID; } };
+  window.EC = { mergePack: mergePack, state: function () { return S; }, go: go, snapshot: snapshotText, check: checkAnswer, similarity: similarity, norm: norm, t: t, autoSay: autoSay, store: Store, ls: LS, profileId: function () { return PID; } };
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', boot); else boot();
 })();
