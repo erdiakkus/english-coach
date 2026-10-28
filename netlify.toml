@@ -1,0 +1,16 @@
+# Netlify: connect the repository (or drag the folder onto app.netlify.com/drop after copying the app files).
+# Only the app files are published; tests and tools stay out.
+[build]
+  command = "mkdir -p _site && cp -r index.html manifest.webmanifest sw.js favicon.ico js packs icons _site/"
+  publish = "_site"
+
+# The browser must always re-check the service worker so updates arrive.
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-cache"
+
+[[headers]]
+  for = "/manifest.webmanifest"
+  [headers.values]
+    Content-Type = "application/manifest+json"

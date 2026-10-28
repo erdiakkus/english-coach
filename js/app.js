@@ -669,6 +669,7 @@
         h('button', { class: 'me', style: 'background:' + me.color, 'aria-label': t('switchProfile') + ': ' + me.name, title: me.name, onclick: function () { go('profiles'); } }, me.emoji),
         h('div', { class: 'brand' }, 'English Coach')),
       h('div', { class: 'chips' },
+        netChip(),
         h('span', { class: 'chip amber' }, '🔥 ' + S.streak.n + ' ' + t('streak')),
         h('span', { class: 'chip' }, '⭐ ' + S.xp),
         h('button', { class: 'ghost', 'aria-label': t('settings'), onclick: function () { go('settings'); } }, '⚙')),
@@ -1218,6 +1219,19 @@
         h('button', { class: 'btn secondary', onclick: function () { if (confirm(t('resetAsk'))) { var keep = { name: profileName(), lang: S.lang, rate: S.rate, voice: S.voice }; S = Object.assign(defaultState(), keep); save(); go('home'); } } }, '🗑 ' + t('reset'))));
   };
 
+  /* ================= online / offline indicator ================= */
+  function isOffline() { return navigator.onLine === false; }
+  function fillNet(el) {
+    var off = isOffline();
+    el.className = 'chip net' + (off ? ' amber' : ' on');
+    el.textContent = off ? '⚠ ' + t('offline') : '●';
+    el.setAttribute('aria-label', off ? t('offlineNote') : t('online'));
+    el.title = off ? t('offlineNote') : t('online');
+  }
+  function netChip() { var el = h('span', { role: 'status' }); fillNet(el); return el; }
+  /* Updated in place, so a quiz in progress is never re-rendered. */
+  function updateNet() { Array.prototype.forEach.call(document.querySelectorAll('.net'), fillNet); }
+
   /* ================= on-screen keyboard ================= */
   /* While a text field has focus the bottom nav is hidden and the field is scrolled to the middle of the visible
      area, so the keyboard never covers it. visualViewport resizes when the keyboard opens. */
@@ -1263,6 +1277,8 @@
       } catch (e) { /* ignore */ }
     }
     keepFocusVisible();
+    window.addEventListener('online', updateNet);
+    window.addEventListener('offline', function () { updateNet(); toast(t('offlineNote')); });
     enterApp();
     registerSw();
   }

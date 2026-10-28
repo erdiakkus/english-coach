@@ -77,3 +77,12 @@ test('first install (no controller yet) shows no banner', async function () {
   await new Promise(function (r) { setTimeout(r, 10); });
   assert.equal(d.doc.querySelector('.update'), null);
 });
+
+test('deploy configs publish every precached top-level path', function () {
+  const top = swAssets().assets.filter(function (a) { return a !== './'; }).map(function (a) { return a.split('/')[0]; })
+    .filter(function (x, i, arr) { return arr.indexOf(x) === i; }).concat(['sw.js']);
+  ['.github/workflows/pages.yml', 'netlify.toml'].forEach(function (f) {
+    const line = fs.readFileSync(path.join(ROOT, f), 'utf8').split('\n').filter(function (l) { return l.indexOf('cp -r') >= 0; })[0];
+    top.forEach(function (p) { assert.ok(new RegExp('\\s' + p.replace('.', '\\.') + '\\s').test(line + ' '), f + ' copies ' + p); });
+  });
+});

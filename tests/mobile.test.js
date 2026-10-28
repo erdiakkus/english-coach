@@ -121,3 +121,21 @@ test('stylesheet carries the mobile rules', function () {
   });
   ['apple-mobile-web-app-capable', 'apple-mobile-web-app-status-bar-style', 'apple-mobile-web-app-title', 'apple-touch-icon'].forEach(function (k) { assert.ok(css.indexOf(k) >= 0, k); });
 });
+
+test('topbar shows online, switches to offline in place and back', async function () {
+  const d = await boot();
+  const chip = d.doc.querySelector('.topbar .net');
+  assert.ok(chip.classList.contains('on'));
+  d.EC.go('unit', { id: '0.1' }); d.click(new RegExp(d.t('practice') + '$'));
+  const q = d.EC.cur;
+  Object.defineProperty(d.win.navigator, 'onLine', { value: false, configurable: true });
+  d.win.dispatchEvent(new d.win.Event('offline'));
+  assert.equal(d.EC.cur, q, 'quiz not re-rendered');
+  assert.ok(d.doc.querySelector('.toast').textContent.indexOf(d.t('offlineNote')) === 0);
+  d.EC.go('home');
+  const off = d.doc.querySelector('.topbar .net');
+  assert.match(off.textContent, new RegExp(d.t('offline')));
+  Object.defineProperty(d.win.navigator, 'onLine', { value: true, configurable: true });
+  d.win.dispatchEvent(new d.win.Event('online'));
+  assert.ok(off.classList.contains('on'));
+});
