@@ -444,7 +444,7 @@
     function step() { if (i >= qs.length) return finish(); renderQ(qs[i]); }
 
     function renderQ(q) {
-      var root = clear($app());
+      var root = clear($app()); window.scrollTo(0, 0);
       var answered = false;
       var body = h('div', { class: 'qbody' });
       var fb = h('div', { class: 'fb', hidden: true });
@@ -670,7 +670,7 @@
         h('div', { class: 'brand' }, 'English Coach')),
       h('div', { class: 'chips' },
         netChip(),
-        h('span', { class: 'chip amber' }, '🔥 ' + S.streak.n + ' ' + t('streak')),
+        h('span', { class: 'chip amber', title: S.streak.n + ' ' + t('streak') }, '🔥 ' + S.streak.n, h('span', { class: 'lbl' }, ' ' + t('streak'))),
         h('span', { class: 'chip' }, '⭐ ' + S.xp),
         h('button', { class: 'ghost', 'aria-label': t('settings'), onclick: function () { go('settings'); } }, '⚙')),
       due ? null : null);
@@ -863,7 +863,7 @@
       toast(t('writingSaved'));
       return true;
     }
-    var root = clear($app());
+    var root = clear($app()); window.scrollTo(0, 0);
     root.appendChild(h('div', { class: 'qhead' }, h('button', { class: 'ghost', onclick: o.back }, '✕'), h('div', { class: 'grow' }), h('span', { class: 'count' }, t('writing'))));
     root.appendChild(h('div', { class: 'qwrap' },
       h('p', { class: 'prompt' }, w.prompt), w.promptTR ? h('p', { class: 'hint' }, w.promptTR) : null,
@@ -1087,7 +1087,7 @@
         h('button', { class: 'pmain', 'data-pid': m.id, onclick: function () { switchTo(m.id); } },
           avatar(m, 'lg'), h('span', { class: 'pname' }, m.name),
           h('span', { class: 'small muted' }, '📘 ' + st.done + '/' + st.total + ' ' + t('unitsShort') + '   🔥 ' + st.streak),
-          h('span', { class: 'small muted' }, t('lastUsed') + ': ' + fmtWhen(m.lastUsed))),
+          h('span', { class: 'small muted' }, t('lastUsed') + ': ', h('span', { class: 'nowrap' }, fmtWhen(m.lastUsed)))),
         h('button', { class: 'pedit', 'aria-label': t('edit') + ': ' + m.name, onclick: function () { go('profileEdit', { id: m.id }); } }, '✎'));
     });
     cards.push(h('button', { class: 'pcard padd', onclick: function () { go('profileEdit', {}); } }, h('span', { class: 'avatar lg' }, '+'), h('span', { class: 'pname' }, t('addProfile'))));

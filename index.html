@@ -41,7 +41,10 @@ button,a,input,select,textarea,label{touch-action:manipulation}
 input,select,textarea{font-size:max(16px,1em)}
 .topbar{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:calc(10px + env(safe-area-inset-top)) 16px 6px}
 .topbar .chips{flex-wrap:wrap;justify-content:flex-end}
-.brand{font-weight:800;letter-spacing:.2px;color:var(--accent)}
+.brand{font-weight:800;letter-spacing:.2px;color:var(--accent);white-space:nowrap}
+.chip{white-space:nowrap}
+.nowrap{white-space:nowrap}
+@media (max-width:479px){.topbar .brand,.topbar .chip .lbl{display:none}}
 .chips{display:flex;gap:8px;align-items:center}
 .chip{background:var(--card);border:1px solid var(--line);border-radius:999px;padding:4px 10px;font-size:.85rem}
 .chip.amber{background:var(--amber-soft);color:var(--amber);border-color:transparent}
