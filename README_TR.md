@@ -16,7 +16,7 @@ Tarayıcıda çalışan, kurulum gerektirmeyen İngilizce çalışma uygulaması
 | İlerleme | Beceri doğrulukları, seri, puan, Claude projesi için "Progress Snapshot" |
 | Profiller | Aynı cihazda birden fazla öğrenci, her birinin ilerlemesi ayrı |
 
-İçerik: Stage 0 (0.1, 0.2) ve A1 ünite 1.1 ila 1.4 hazır. `packs/unit-1.5-daily-routine.json` örnek ek pakettir. Kalan ünitelerin içeriğini Claude projesinde ürettirip paket olarak yüklersin (10_app_content_pack_spec.md).
+İçerik: Stage 0 (0.1, 0.2) ve A1 ünite 1.1 ila 1.5 uygulamada hazır. `packs/unit-1.5-daily-routine.json` paket biçimine örnek olarak duruyor (aynı içerik, yüklemeye gerek yok). Kalan ünitelerin içeriğini Claude projesinde ürettirip paket olarak yüklersin (10_app_content_pack_spec.md).
 
 ## Profiller
 - Her öğrencinin kendi profili vardır: ilerleme, seri, kelime tekrarı (SRS), ödev, sınavlar, yazılar, arayüz dili, konuşma hızı ve ses ayrı tutulur.

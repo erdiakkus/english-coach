@@ -484,6 +484,366 @@
     }
   });
 
+  /* Unit 1.5 is identical to packs/unit-1.5-daily-routine.json (kept as the reference pack). */
+  def('1.5', {
+    "can": "Günlük rutinimi saatlerle anlatabilir, sıklık zarflarını kullanabilir ve present simple ile soru sorabilirim.",
+    "vocab": [
+      {
+        "en": "get up",
+        "tr": "kalkmak",
+        "ex": "I get up at seven o'clock.",
+        "exTr": "Saat yedide kalkarım."
+      },
+      {
+        "en": "have breakfast",
+        "tr": "kahvaltı yapmak",
+        "ex": "She has breakfast at eight.",
+        "exTr": "O saat sekizde kahvaltı yapar."
+      },
+      {
+        "en": "go to work",
+        "tr": "işe gitmek",
+        "ex": "He goes to work by bus.",
+        "exTr": "O işe otobüsle gider."
+      },
+      {
+        "en": "have lunch",
+        "tr": "öğle yemeği yemek",
+        "ex": "We have lunch at one o'clock.",
+        "exTr": "Saat birde öğle yemeği yeriz."
+      },
+      {
+        "en": "cook dinner",
+        "tr": "akşam yemeği pişirmek",
+        "ex": "I cook dinner in the evening.",
+        "exTr": "Akşam yemek pişiririm."
+      },
+      {
+        "en": "go to bed",
+        "tr": "yatmaya gitmek",
+        "ex": "The children go to bed at nine.",
+        "exTr": "Çocuklar dokuzda yatar."
+      },
+      {
+        "en": "always",
+        "tr": "her zaman",
+        "ex": "I always say thank you.",
+        "exTr": "Her zaman teşekkür ederim."
+      },
+      {
+        "en": "usually",
+        "tr": "genellikle",
+        "ex": "I usually drink tea in the morning.",
+        "exTr": "Sabahları genellikle çay içerim."
+      },
+      {
+        "en": "sometimes",
+        "tr": "bazen",
+        "ex": "Sometimes we walk to the park.",
+        "exTr": "Bazen parka yürüyerek gideriz."
+      },
+      {
+        "en": "never",
+        "tr": "asla, hiç",
+        "ex": "She never drinks coffee.",
+        "exTr": "O hiç kahve içmez."
+      },
+      {
+        "en": "early",
+        "tr": "erken",
+        "ex": "I get up early.",
+        "exTr": "Erken kalkarım."
+      },
+      {
+        "en": "late",
+        "tr": "geç",
+        "ex": "He is late for work.",
+        "exTr": "O işe geç kaldı."
+      }
+    ],
+    "grammar": {
+      "title": "Present simple: günlük rutin ve alışkanlıklar",
+      "html": "<p><b>Kullanım:</b> Alışkanlıklar, rutinler ve her zaman doğru olan şeyler için.</p><ul><li>I / you / we / they + <b>fiil</b>: I <b>get</b> up. They <b>have</b> lunch.</li><li>he / she / it + <b>fiil + s</b>: He <b>gets</b> up. She <b>has</b> lunch.</li></ul><p><b>Düzensizler:</b> have → <b>has</b>, go → <b>goes</b>, do → <b>does</b>. -ch, -sh, -s ile biten fiillere -es: watch → <b>watches</b>.</p><p><b>Olumsuz:</b> I <b>don't</b> like coffee. She <b>doesn't</b> like coffee. (doesn't sonrası fiil yalın: she doesn't <b>like</b>, ✗ likes)</p><p><b>Soru:</b> <b>Do</b> you get up early? <b>Does</b> she go to school? Türkçede \"mi\" ekini kullanırsın, İngilizcede <b>do / does</b> başa gelir.</p><p><b>Sıklık zarfları:</b> always, usually, sometimes, never. Ana fiilden <b>önce</b>: I <b>always</b> get up early. \"to be\"den <b>sonra</b>: She is <b>never</b> late.</p><p><b>Dikkat:</b> \"She work\" ve \"I am work\" yanlıştır. Doğrusu: She works. I work.</p>",
+      "examples": [
+        "I get up at seven o'clock.",
+        "She has breakfast at eight.",
+        "Do you get up early?",
+        "She never drinks coffee."
+      ]
+    },
+    "exercises": [
+      {
+        "type": "fill",
+        "q": "I ___ up at seven o'clock.",
+        "answers": [
+          "get"
+        ],
+        "tag": "present simple"
+      },
+      {
+        "type": "fill",
+        "q": "She ___ breakfast at eight.",
+        "answers": [
+          "has"
+        ],
+        "tag": "third person -s",
+        "explain": "he / she / it ile have → has olur."
+      },
+      {
+        "type": "fill",
+        "q": "He ___ to work by bus.",
+        "answers": [
+          "goes"
+        ],
+        "tag": "third person -s"
+      },
+      {
+        "type": "mc",
+        "q": "They ___ lunch at one o'clock.",
+        "options": [
+          "have",
+          "has",
+          "haves",
+          "having"
+        ],
+        "answer": "have",
+        "tag": "present simple"
+      },
+      {
+        "type": "fill",
+        "q": "I ___ like coffee. (olumsuz)",
+        "answers": [
+          "don't",
+          "do not"
+        ],
+        "tag": "negatives"
+      },
+      {
+        "type": "fill",
+        "q": "She ___ like tea. (olumsuz)",
+        "answers": [
+          "doesn't",
+          "does not"
+        ],
+        "tag": "negatives"
+      },
+      {
+        "type": "order",
+        "q": "Cümleyi sırala:",
+        "words": [
+          "Do",
+          "you",
+          "get",
+          "up",
+          "early"
+        ],
+        "answers": [
+          "Do you get up early"
+        ],
+        "tag": "questions"
+      },
+      {
+        "type": "order",
+        "q": "Cümleyi sırala:",
+        "words": [
+          "She",
+          "never",
+          "drinks",
+          "coffee"
+        ],
+        "answers": [
+          "She never drinks coffee"
+        ],
+        "tag": "adverbs of frequency"
+      },
+      {
+        "type": "mc",
+        "q": "Hangisi doğru?",
+        "options": [
+          "He works in a shop.",
+          "He work in a shop.",
+          "He is works in a shop.",
+          "He working in a shop."
+        ],
+        "answer": "He works in a shop.",
+        "tag": "third person -s"
+      },
+      {
+        "type": "typed",
+        "q": "Çevir: Ben genellikle çay içerim.",
+        "answers": [
+          "I usually drink tea"
+        ],
+        "tag": "adverbs of frequency"
+      },
+      {
+        "type": "mc",
+        "q": "___ she go to school? (soru)",
+        "options": [
+          "Does",
+          "Do",
+          "Is",
+          "Are"
+        ],
+        "answer": "Does",
+        "tag": "questions"
+      },
+      {
+        "type": "mc",
+        "q": "I ___ say thank you. (her zaman)",
+        "options": [
+          "always",
+          "never",
+          "sometimes",
+          "usually"
+        ],
+        "answer": "always",
+        "tag": "adverbs of frequency"
+      }
+    ],
+    "listening": [
+      {
+        "type": "dictation",
+        "say": "He goes to work by bus.",
+        "q": "Duyduğunu yaz:",
+        "answers": [
+          "He goes to work by bus"
+        ],
+        "skill": "listening",
+        "tag": "third person -s"
+      },
+      {
+        "type": "listenmc",
+        "say": "She has breakfast at eight.",
+        "q": "Ne duydun?",
+        "options": [
+          "She has breakfast at eight.",
+          "She has breakfast at eighty.",
+          "She has lunch at eight.",
+          "He has breakfast at eight."
+        ],
+        "answer": "She has breakfast at eight.",
+        "skill": "listening",
+        "tag": "present simple"
+      },
+      {
+        "type": "dictation",
+        "say": "I never drink coffee.",
+        "q": "Duyduğunu yaz:",
+        "answers": [
+          "I never drink coffee"
+        ],
+        "skill": "listening",
+        "tag": "adverbs of frequency"
+      },
+      {
+        "type": "listenmc",
+        "say": "Do you get up early?",
+        "q": "Ne duydun?",
+        "options": [
+          "Do you get up early?",
+          "Does she get up early?",
+          "Do you go up early?",
+          "Do you get up late?"
+        ],
+        "answer": "Do you get up early?",
+        "skill": "listening",
+        "tag": "questions"
+      }
+    ],
+    "speaking": [
+      {
+        "type": "speak",
+        "say": "I get up at seven o'clock.",
+        "hint": "Saat yedide kalkarım.",
+        "skill": "speaking"
+      },
+      {
+        "type": "speak",
+        "say": "She goes to work by bus.",
+        "hint": "O işe otobüsle gider.",
+        "skill": "speaking"
+      },
+      {
+        "type": "speak",
+        "say": "I usually drink tea.",
+        "hint": "Genellikle çay içerim.",
+        "skill": "speaking"
+      },
+      {
+        "type": "speak",
+        "say": "Do you get up early?",
+        "hint": "Erken kalkar mısın?",
+        "skill": "speaking"
+      }
+    ],
+    "reading": {
+      "text": "Sam gets up at six o'clock. He has breakfast at seven. He goes to work by bus. He has lunch at one o'clock. In the evening, he cooks dinner. He goes to bed at ten o'clock. Sam never drinks coffee.",
+      "glossary": [
+        [
+          "in the evening",
+          "akşamları"
+        ],
+        [
+          "by bus",
+          "otobüsle"
+        ]
+      ],
+      "questions": [
+        {
+          "type": "mc",
+          "q": "Sam saat kaçta kalkıyor?",
+          "options": [
+            "At six",
+            "At seven",
+            "At ten",
+            "At one"
+          ],
+          "answer": "At six",
+          "tag": "reading",
+          "skill": "reading"
+        },
+        {
+          "type": "mc",
+          "q": "Sam işe nasıl gidiyor?",
+          "options": [
+            "By bus",
+            "By car",
+            "On foot",
+            "By train"
+          ],
+          "answer": "By bus",
+          "tag": "reading",
+          "skill": "reading"
+        },
+        {
+          "type": "mc",
+          "q": "Sam ne içmez?",
+          "options": [
+            "Coffee",
+            "Tea",
+            "Water",
+            "Milk"
+          ],
+          "answer": "Coffee",
+          "tag": "reading",
+          "skill": "reading"
+        }
+      ]
+    },
+    "writing": {
+      "prompt": "Describe your typical day in 8 sentences. Use times and always, usually, sometimes or never. (35 to 50 words)",
+      "promptTR": "Tipik bir gününü 8 cümleyle anlat. Saatler ve always, usually, sometimes, never kullan. (35-50 kelime)",
+      "minWords": 35,
+      "checklist": [
+        "En az 5 saat yazdım (at seven ...)",
+        "he / she ile fiile -s koydum (ya da I ile koymadım)",
+        "En az 2 sıklık zarfı kullandım",
+        "Her cümle büyük harfle başlıyor ve nokta ile bitiyor"
+      ]
+    }
+  });
+
   /* ---------- Placement test (4 bands x 5 items) ---------- */
   var PLACEMENT = [
     [

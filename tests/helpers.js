@@ -156,6 +156,11 @@ function doUnit(d, id) {
   d.click(new RegExp(d.t('test') + '$')); d.finishQuiz(true); d.click(d.t('continue'));
 }
 
-function readPack() { return JSON.parse(fs.readFileSync(path.join(ROOT, 'packs', 'unit-1.5-daily-routine.json'), 'utf8')); }
+/* The reference pack relabelled as unit 2.1, which has no built-in content, so tests can prove that packs load. */
+function readPack() {
+  const p = JSON.parse(fs.readFileSync(path.join(ROOT, 'packs', 'unit-1.5-daily-routine.json'), 'utf8'));
+  Object.assign(p.units[0], { id: '2.1', stage: 'A2.1', title: 'Yesterday', titleTR: 'Dün' });
+  return p;
+}
 
 module.exports = { boot: boot, ROOT: ROOT, readPack: readPack, writeAndSave: writeAndSave, doUnit: doUnit, WRITING: WRITING };

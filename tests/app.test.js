@@ -86,11 +86,11 @@ test('stage exam S0 can be taken and passed after both units', async function ()
   assert.match(d.text(), new RegExp(d.t('examPassed')));
 });
 
-test('content pack merges and makes unit 1.5 playable', async function () {
+test('content pack merges and makes a missing unit (2.1) playable', async function () {
   const d = await boot();
   assert.deepEqual(d.EC.mergePack(readPack()), []);
   d.EC.go('path');
-  const row = Array.prototype.slice.call(d.doc.querySelectorAll('.unit')).filter(function (b) { return b.textContent.indexOf('1.5') === 0; })[0];
+  const row = Array.prototype.slice.call(d.doc.querySelectorAll('.unit')).filter(function (b) { return b.textContent.indexOf('2.1') === 0; })[0];
   assert.ok(row.textContent.indexOf(d.t('soon')) < 0);
 });
 
@@ -102,3 +102,4 @@ test('snapshot keeps the Claude project format', async function () {
   ['Stage and unit:', 'Sessions completed:', "Today's goal and result:", 'New words', 'Words to review', 'Grammar status', 'Recurring errors:', 'Next session plan:', 'Skills accuracy:']
     .forEach(function (p) { assert.ok(lines.some(function (l) { return l.indexOf(p) === 0; }), p); });
 });
+
