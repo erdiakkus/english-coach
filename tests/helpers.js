@@ -132,7 +132,7 @@ function driver(win) {
 }
 
 /* Learner flows shared by several test files. */
-const WRITING = 'Hello. My name is Ayla. Thank you very much for the help today. I am happy here and I like it.';
+const WRITING = 'Hello. My name is Ayla. Thank you very much for the help today. I am happy here and I like it. I have lived in this town for three years and I have made many friends. Last week I went to the shop and I bought some bread and some milk. If it rains tomorrow I will stay at home and I will read a book. I think it is a good idea to practise every day because it helps me to learn. Although it is sometimes difficult I do not give up. The teacher who helps me is very kind and she said that I am making progress.';
 
 function writeAndSave(d) {
   const ta = d.doc.querySelector('textarea');
@@ -156,10 +156,10 @@ function doUnit(d, id) {
   d.click(new RegExp(d.t('test') + '$')); d.finishQuiz(true); d.click(d.t('continue'));
 }
 
-/* The reference pack relabelled as unit 2.1, which has no built-in content, so tests can prove that packs load. */
+/* The reference pack relabelled as unit 4.1 (a unit the app does not have), so tests can prove that packs load. */
 function readPack() {
   const p = JSON.parse(fs.readFileSync(path.join(ROOT, 'packs', 'unit-1.5-daily-routine.json'), 'utf8'));
-  Object.assign(p.units[0], { id: '2.1', stage: 'A2.1', title: 'Yesterday', titleTR: 'Dün' });
+  Object.assign(p.units[0], { id: '4.1', stage: 'B1.2', title: 'Extra unit', titleTR: 'Ek ünite' });
   return p;
 }
 

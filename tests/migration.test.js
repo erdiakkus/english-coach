@@ -34,7 +34,7 @@ test('v1 progress becomes the first profile and the old key stays untouched', as
   assert.equal(d.EC.state().lang, 'en', 'per-profile UI language kept');
   assert.match(d.text(), /Hello, Ayla/);
   d.EC.go('path');
-  const row = Array.prototype.slice.call(d.doc.querySelectorAll('.unit')).filter(function (b) { return b.textContent.indexOf('2.1') === 0; })[0];
+  const row = Array.prototype.slice.call(d.doc.querySelectorAll('.unit')).filter(function (b) { return b.textContent.indexOf('4.1') === 0; })[0];
   assert.ok(row.textContent.indexOf('Coming soon') < 0, 'shared pack merged on boot');
 });
 
