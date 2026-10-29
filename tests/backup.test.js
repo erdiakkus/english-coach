@@ -124,7 +124,7 @@ test('content packs are shared by all profiles and survive a reload', async func
   const d2 = await boot({ storage: d.storage() });
   d2.doc.querySelector('.pmain').click();
   d2.EC.go('path');
-  const row = Array.prototype.slice.call(d2.doc.querySelectorAll('.unit')).filter(function (b) { return b.textContent.indexOf('4.1') === 0; })[0];
+  const row = Array.prototype.slice.call(d2.doc.querySelectorAll('.unit')).filter(function (b) { return b.textContent.indexOf('5.1') === 0; })[0];
   assert.ok(row.textContent.indexOf(d2.t('soon')) < 0);
 });
 

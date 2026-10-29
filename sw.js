@@ -3,7 +3,7 @@
    waits; the page shows a "new version" banner and activates it only when the learner taps reload.
    Code files are never refreshed behind the learner's back, so a page can not mix two versions.
    Content packs are plain data, so those are also refreshed from the network in the background. */
-var VERSION = '2.1.0';
+var VERSION = '2.2.0';
 var CACHE = 'ec-' + VERSION;
 var ASSETS = [
   './',

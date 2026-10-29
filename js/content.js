@@ -51,11 +51,23 @@
     ['3.9', 'B1.2', 'Phrasal verbs and idioms', 'Phrasal verbs ve deyimler'],
     ['3.10', 'B1.2', 'Formal writing', 'Resmi yazışma'],
     ['3.11', 'B1.2', 'Understanding natural speech', 'Doğal konuşmayı anlama'],
-    ['3.12', 'B1.2', 'B1 consolidation', 'B1 pekiştirme']
+    ['3.12', 'B1.2', 'B1 consolidation', 'B1 pekiştirme'],
+    ['4.1', 'B2.1', 'Narrative tenses', 'Anlatı zamanları'],
+    ['4.2', 'B2.1', 'Duration and change', 'Süre ve değişim'],
+    ['4.3', 'B2.1', 'Future plans and deadlines', 'Gelecek planlar ve son tarihler'],
+    ['4.4', 'B2.1', 'Regrets and unreal situations', 'Pişmanlıklar ve gerçek dışı durumlar'],
+    ['4.5', 'B2.1', 'Deduction and possibility', 'Çıkarım ve olasılık'],
+    ['4.6', 'B2.1', 'Relative clauses', 'İlgi cümlecikleri'],
+    ['4.7', 'B2.2', 'Passive and causative', 'Edilgen ve ettirgen yapı'],
+    ['4.8', 'B2.2', 'Reporting verbs', 'Aktarma fiilleri'],
+    ['4.9', 'B2.2', 'Linking ideas and arguing', 'Fikirleri bağlama ve savunma'],
+    ['4.10', 'B2.2', 'Meetings and interviews', 'Toplantılar ve mülakatlar'],
+    ['4.11', 'B2.2', 'Opinions and cautious language', 'Görüşler ve temkinli dil'],
+    ['4.12', 'B2.2', 'B2 consolidation', 'B2 pekiştirme']
   ].map(function (a) { return { id: a[0], stage: a[1], title: a[2], titleTR: a[3] }; });
 
   var STAGE_NAMES = {
-    'S0': 'Stage 0: Yeniden ısınma', 'A1': 'A1', 'A2.1': 'A2.1', 'A2.2': 'A2.2', 'B1.1': 'B1.1', 'B1.2': 'B1.2'
+    'S0': 'Stage 0: Yeniden ısınma', 'A1': 'A1', 'A2.1': 'A2.1', 'A2.2': 'A2.2', 'B1.1': 'B1.1', 'B1.2': 'B1.2', 'B2.1': 'B2.1', 'B2.2': 'B2.2'
   };
 
   function def(id, data) {
@@ -2856,6 +2868,870 @@
     }
   });
 
+  def('4.1', {
+    can: 'I can tell a story with a clear order of events, using the past simple, past continuous, past perfect and used to or would.',
+    vocab: [
+      v('by the time', '... olduğunda (artık)', 'By the time we arrived, it was dark.', 'Vardığımızda hava kararmıştı.'),
+      v('used to', 'eskiden ... yapardı / ... idi', 'I used to live near the sea.', 'Eskiden denize yakın yaşardım.'),
+      v('eventually', 'sonunda, en sonunda', 'Eventually, the bus arrived.', 'Sonunda otobüs geldi.'),
+      v('at first', 'önce, başlangıçta', 'At first, I did not understand him.', 'Başta onu anlamadım.'),
+      v('meanwhile', 'bu arada', 'Meanwhile, the children were playing outside.', 'Bu arada çocuklar dışarıda oynuyordu.'),
+      v('suddenly', 'birden', 'Suddenly, the lights went out.', 'Birden ışıklar söndü.'),
+      v('exhausted', 'bitkin', 'She was exhausted after the long flight.', 'Uzun uçuştan sonra bitkindi.'),
+      v('delayed', 'rötarlı', 'Our flight was delayed by two hours.', 'Uçuşumuz iki saat rötar yaptı.'),
+      v('realise', 'fark etmek', 'I realised that I had lost my keys.', 'Anahtarlarımı kaybettiğimi fark ettim.'),
+      v('in the end', 'sonunda', 'In the end, we took a taxi.', 'Sonunda taksiye bindik.'),
+      v('whenever', 'her ... -dığında', 'Whenever it rained, we stayed inside.', 'Ne zaman yağmur yağsa içeride kalırdık.'),
+      v('memory', 'anı, bellek', 'I have a happy memory of that summer.', 'O yazdan mutlu bir anım var.')
+    ],
+    grammar: {
+      title: 'Narrative tenses: past simple, past continuous, past perfect, past perfect continuous, used to and would',
+      html: '<p><b>Past simple</b> = the main events in order: <b>I opened the door and saw a letter.</b></p>' +
+        '<p><b>Past continuous</b> = the background, or an action in progress when something happened: <b>It was raining when we left.</b></p>' +
+        '<p><b>Past perfect</b> (had + past participle) = an action that happened <b>before</b> another past moment: <b>When I got to the station, the train had left.</b></p>' +
+        '<p><b>Past perfect continuous</b> (had been + -ing) = a longer action before another past moment, often with a visible result: <b>She was tired because she had been working all day.</b></p>' +
+        '<p><b>Used to</b> = past habits and past states that are now finished: <b>I used to smoke. We used to have a car.</b> <b>Would</b> = past habits only, not states: <b>Every summer we would go to the sea.</b> Not: I would have a dog.</p>' +
+        '<p><b>Linkers:</b> at first, then, after that, meanwhile, by the time, as soon as, eventually, in the end.</p>',
+      examples: ['By the time we arrived, the film had started.', 'I was tired because I had been working all day.', 'We used to go to the sea every summer.', 'It was raining when we left.']
+    },
+    exercises: [
+      mc('By the time we arrived, the film ___.', ['had started', 'started', 'has started', 'was starting'], 'had started', 'past perfect'),
+      mc('She was tired because she ___ all day.', ['had been working', 'has worked', 'worked', 'was worked'], 'had been working', 'past perfect continuous'),
+      mc('When I was a child, we ___ go to the sea every summer.', ['would', 'will', 'had', 'are'], 'would', 'used to / would'),
+      mc('Which sentence is correct for a past state?', ['I used to have a dog.', 'I would have a dog when I was young.', 'I use to have a dog.', 'I was used to have a dog.'], 'I used to have a dog.', 'used to / would'),
+      fill('He ___ already left when I called.', ['had'], 'past perfect'),
+      fill('I was out of breath because I had ___ running.', ['been'], 'past perfect continuous'),
+      mc('We had waited for an hour ___ the bus finally came.', ['when', 'during', 'since', 'for'], 'when', 'linkers'),
+      mc('"When I got to the station, the train ___." (the train left first)', ['had left', 'left', 'was leaving', 'leaves'], 'had left', 'past perfect'),
+      mc('Which tense gives the background of a story?', ['past continuous', 'past perfect', 'present simple', 'future simple'], 'past continuous', 'narrative'),
+      order(['By', 'the', 'time', 'I', 'arrived', 'they', 'had', 'gone'], ['By the time I arrived they had gone'], 'past perfect'),
+      order(['We', 'had', 'been', 'walking', 'for', 'hours', 'when', 'it', 'started', 'to', 'rain'], ['We had been walking for hours when it started to rain'], 'past perfect continuous'),
+      typed('Translate: Geldiğimde film başlamıştı.', ['The film had started when I arrived', 'When I arrived the film had started'], 'past perfect'),
+      typed('Rewrite with used to: I lived in a village when I was young.', ['I used to live in a village when I was young'], 'used to / would'),
+      match([['eventually', 'sonunda'], ['meanwhile', 'bu arada'], ['exhausted', 'bitkin'], ['delayed', 'rötarlı']], 'vocab')
+    ],
+    listening: [
+      lmc('By the time we got there, the shop had closed.', ['By the time we got there, the shop had closed.', 'By the time we got there, the shop was closing.', 'By the time we got there, the shop has closed.', 'When we got there, the shop was opening.'], 'By the time we got there, the shop had closed.', 'past perfect'),
+      lmc('She had been waiting for two hours.', ['She had been waiting for two hours.', 'She has been waiting for two hours.', 'She was waiting for two hours.', 'She waited for two hours.'], 'She had been waiting for two hours.', 'past perfect continuous'),
+      dict('We used to go to the sea every summer.'),
+      dict('Suddenly, the lights went out and everyone stopped talking.')
+    ],
+    speaking: [
+      speak('By the time I arrived, the meeting had started.', 'Vardığımda toplantı başlamıştı.'),
+      speak('I was exhausted because I had been working all day.', 'Bütün gün çalıştığım için bitkindim.'),
+      speak('We used to go to my grandmother\'s house every summer.', 'Her yaz büyükannemin evine giderdik.'),
+      speak('At first I was nervous, but in the end it went well.', 'Başta gergindim ama sonunda iyi geçti.')
+    ],
+    reading: {
+      text: 'A difficult journey\nLast winter I travelled to Manchester to see my sister. At first everything went well. I had left home early, and the train was on time. But halfway there, it began to snow heavily and the train stopped.\nWe had been waiting for almost two hours when the driver said the line was blocked. Meanwhile, many passengers were calling their families. I was exhausted and hungry because I had not eaten since breakfast.\nEventually, a bus took us to the next town. By the time I reached my sister\'s house, it was midnight. She had been worrying about me all evening, so she hugged me for a long time. In the end it was a good weekend.',
+      glossary: [['halfway', 'yolun yarısında'], ['blocked', 'kapalı, tıkalı'], ['hugged', 'sarıldı']],
+      questions: [
+        rq('Why did the train stop?', ['It snowed heavily.', 'The driver was ill.', 'The engine broke.', 'The station was closed.'], 'It snowed heavily.'),
+        rq('Why was the writer hungry?', ['She had not eaten since breakfast.', 'The train had no food.', 'She had lost her bag.', 'The bus was late.'], 'She had not eaten since breakfast.'),
+        rq('What time did she reach her sister\'s house?', ['midnight', 'noon', 'breakfast time', 'early evening'], 'midnight')
+      ]
+    },
+    writing: {
+      prompt: 'Write a story (about 120 words) about a journey or a day when something went wrong. Use the past perfect at least twice, the past continuous for the background, and two linkers such as at first, meanwhile or eventually. (110 to 130 words)',
+      promptTR: 'Bir yolculuk veya bir şeylerin ters gittiği bir gün hakkında yaklaşık 120 kelimelik bir hikâye yaz. Past perfect en az iki kez, arka plan için past continuous ve at first, meanwhile veya eventually gibi iki bağlaç kullan. (110-130 kelime)',
+      minWords: 85,
+      checklist: ['Past perfect en az iki kez kullandım', 'Arka plan için past continuous kullandım', 'En az iki bağlaç kullandım', 'Olaylar sıralı ve anlaşılır']
+    }
+  });
+
+  def('4.2', {
+    can: 'I can talk about duration, change and results with the present perfect simple and continuous, and choose the right one.',
+    vocab: [
+      v('lately', 'son zamanlarda', 'I have been feeling tired lately.', 'Son zamanlarda yorgun hissediyorum.'),
+      v('recently', 'yakın zamanda', 'She has recently changed jobs.', 'Yakın zamanda iş değiştirdi.'),
+      v('so far', 'şimdiye kadar', 'So far, I have read three chapters.', 'Şimdiye kadar üç bölüm okudum.'),
+      v('ever since', '... -den beri', 'I have lived here ever since 2019.', '2019\'dan beri burada yaşıyorum.'),
+      v('progress', 'ilerleme', 'You have made great progress.', 'Büyük ilerleme kaydettin.'),
+      v('improve', 'gelişmek, geliştirmek', 'My English has improved a lot.', 'İngilizcem çok gelişti.'),
+      v('habit', 'alışkanlık', 'Exercise has become a habit.', 'Spor bir alışkanlık oldu.'),
+      v('stressed', 'stresli', 'He has been feeling stressed at work.', 'İşte stresli hissediyor.'),
+      v('lose weight', 'kilo vermek', 'I have lost three kilos this month.', 'Bu ay üç kilo verdim.'),
+      v('gym', 'spor salonu', 'I have been going to the gym twice a week.', 'Haftada iki kez spor salonuna gidiyorum.'),
+      v('gradually', 'giderek, yavaş yavaş', 'Things have gradually got better.', 'İşler yavaş yavaş düzeldi.'),
+      v('keep up', 'sürdürmek', 'It is hard to keep up a routine.', 'Bir rutini sürdürmek zor.')
+    ],
+    grammar: {
+      title: 'Present perfect simple and continuous',
+      html: '<p><b>Present perfect simple</b> (have/has + past participle) focuses on the <b>result</b> or the <b>number</b>: <b>I have written three emails. She has lost her keys.</b></p>' +
+        '<p><b>Present perfect continuous</b> (have/has been + -ing) focuses on the <b>activity</b> and how long it has lasted, often with a visible result now: <b>I have been writing emails all morning. Your eyes are red. Have you been crying?</b></p>' +
+        '<p><b>How long?</b> uses both: <b>I have lived here for six years. / I have been living here for six years.</b> With <b>for</b> (a period) and <b>since</b> (a starting point).</p>' +
+        '<p><b>State verbs</b> (know, like, have = own, be) do not usually take the continuous: <b>I have known her for years.</b> Not: I have been knowing her.</p>' +
+        '<p><b>Different meanings:</b> <b>I have read the book</b> (it is finished). <b>I have been reading the book</b> (I may not have finished it).</p>' +
+        '<p><b>Time words:</b> lately, recently, so far, ever since, all day, for ages.</p>',
+      examples: ['I have been learning English for two years.', 'She has written five reports this week.', 'It has been raining all day.', 'We have known each other since 2015.']
+    },
+    exercises: [
+      mc('I ___ for this company since 2018.', ['have worked', 'work', 'am working', 'worked'], 'have worked', 'present perfect'),
+      mc('Your hands are dirty. What ___?', ['have you been doing', 'did you do', 'are you doing', 'do you do'], 'have you been doing', 'present perfect continuous'),
+      mc('I ___ three emails this morning. (the number matters)', ['have written', 'have been writing', 'was writing', 'write'], 'have written', 'simple or continuous'),
+      mc('I ___ her for ten years.', ['have known', 'have been knowing', 'know', 'am knowing'], 'have known', 'state verbs'),
+      fill('We have lived here ___ 2019.', ['since'], 'for / since'),
+      fill('She has been learning English ___ two years.', ['for'], 'for / since'),
+      mc('Which sentence means the book is probably finished?', ['I have read the book.', 'I have been reading the book.', 'I am reading the book.', 'I read the book now.'], 'I have read the book.', 'simple or continuous'),
+      mc('Which question asks about duration?', ['How long have you been waiting?', 'How many times did you wait?', 'When did you wait?', 'Why do you wait?'], 'How long have you been waiting?', 'how long'),
+      mc('"It ___ all day, so the garden is wet."', ['has been raining', 'rained', 'is raining', 'has rained'], 'has been raining', 'present perfect continuous'),
+      order(['I', 'have', 'been', 'going', 'to', 'the', 'gym', 'lately'], ['I have been going to the gym lately'], 'present perfect continuous'),
+      order(['She', 'has', 'made', 'great', 'progress', 'so', 'far'], ['She has made great progress so far'], 'present perfect'),
+      typed('Translate: İki yıldır İngilizce öğreniyorum.', ['I have been learning English for two years', 'I have learned English for two years'], 'present perfect continuous'),
+      typed('Ask about duration: how long / you / live here (present perfect).', ['How long have you lived here', 'How long have you been living here'], 'how long'),
+      match([['lately', 'son zamanlarda'], ['progress', 'ilerleme'], ['gradually', 'yavaş yavaş'], ['habit', 'alışkanlık']], 'vocab')
+    ],
+    listening: [
+      lmc('I have been working here since January.', ['I have been working here since January.', 'I was working here in January.', 'I worked here in January.', 'I have worked here until January.'], 'I have been working here since January.', 'present perfect continuous'),
+      lmc('She has lost three kilos this month.', ['She has lost three kilos this month.', 'She has been losing three kilos this month.', 'She lost three kilos last month.', 'She will lose three kilos this month.'], 'She has lost three kilos this month.', 'present perfect'),
+      dict('How long have you been learning English?'),
+      dict('My English has improved a lot lately.')
+    ],
+    speaking: [
+      speak('I have been learning English for two years.', 'İki yıldır İngilizce öğreniyorum.'),
+      speak('How long have you lived in this town?', 'Bu kasabada ne kadardır yaşıyorsun?'),
+      speak('I have been feeling tired lately.', 'Son zamanlarda yorgun hissediyorum.'),
+      speak('So far, I have read three chapters of the book.', 'Şimdiye kadar kitabın üç bölümünü okudum.')
+    ],
+    reading: {
+      text: 'A new routine\nSix months ago my doctor told me to exercise more. At first I did not take her advice seriously, but I have been going to the gym three times a week since March.\nSo far I have lost four kilos and I have made two new friends. I have also been sleeping much better lately. The hardest part has been keeping up the routine in winter, when it is dark at five o\'clock.\nI have not been perfect: I have missed several sessions because of work. However, I have decided not to give up. Exercise has gradually become a habit, and that is the biggest change of all.',
+      glossary: [['advice', 'tavsiye'], ['missed', 'kaçırdı'], ['give up', 'vazgeçmek']],
+      questions: [
+        rq('How often does the writer go to the gym?', ['three times a week', 'every day', 'once a month', 'twice a day'], 'three times a week'),
+        rq('What has been the hardest part?', ['keeping up the routine in winter', 'making friends', 'losing weight', 'finding a gym'], 'keeping up the routine in winter'),
+        rq('What is the biggest change?', ['Exercise has become a habit.', 'She has a new job.', 'She has moved house.', 'She has a new doctor.'], 'Exercise has become a habit.')
+      ]
+    },
+    writing: {
+      prompt: 'Write about a change in your life in the last year (about 120 words): something you have been doing, something you have achieved so far, and one difficulty. Use both the present perfect simple and continuous. (110 to 130 words)',
+      promptTR: 'Son bir yıldaki bir değişikliği anlatan yaklaşık 120 kelimelik bir yazı yaz: yapmakta olduğun bir şey, şimdiye kadar başardığın bir şey ve bir zorluk. Present perfect simple ve continuous kullan. (110-130 kelime)',
+      minWords: 85,
+      checklist: ['Present perfect continuous kullandım', 'Present perfect simple kullandım (sonuç veya sayı)', 'for veya since kullandım', 'Bir zorluk ve bir başarı yazdım']
+    }
+  });
+
+  def('4.3', {
+    can: 'I can talk about future plans, predictions and deadlines using the future continuous, the future perfect and be about to.',
+    vocab: [
+      v('deadline', 'son teslim tarihi', 'The deadline is next Friday.', 'Son teslim tarihi gelecek cuma.'),
+      v('on schedule', 'programa uygun', 'The project is on schedule.', 'Proje programa uygun gidiyor.'),
+      v('behind schedule', 'programın gerisinde', 'We are two weeks behind schedule.', 'İki hafta geriyiz.'),
+      v('by the end of', '... sonuna kadar', 'I will have finished by the end of May.', 'Mayıs sonuna kadar bitirmiş olacağım.'),
+      v('postpone', 'ertelemek', 'They postponed the meeting.', 'Toplantıyı ertelediler.'),
+      v('arrange', 'ayarlamak, planlamak', 'I have arranged a meeting for Monday.', 'Pazartesi için bir toplantı ayarladım.'),
+      v('available', 'müsait', 'I will be available after three.', 'Üçten sonra müsait olacağım.'),
+      v('confirm', 'onaylamak', 'Please confirm your attendance.', 'Lütfen katılımınızı onaylayın.'),
+      v('prediction', 'tahmin', 'My prediction is that prices will rise.', 'Tahminim fiyatların artacağı.'),
+      v('probably', 'muhtemelen', 'It will probably rain tomorrow.', 'Yarın muhtemelen yağmur yağacak.'),
+      v('in the near future', 'yakın gelecekte', 'We may move in the near future.', 'Yakın gelecekte taşınabiliriz.'),
+      v('take place', 'gerçekleşmek', 'The event will take place in June.', 'Etkinlik Haziranda gerçekleşecek.')
+    ],
+    grammar: {
+      title: 'Future continuous, future perfect and be about to',
+      html: '<p><b>Future continuous</b> (will be + -ing) = an action in progress at a future moment: <b>This time tomorrow I will be flying to Izmir.</b> It also asks politely about plans: <b>Will you be using the car tonight?</b></p>' +
+        '<p><b>Future perfect</b> (will have + past participle) = an action finished <b>before</b> a future time: <b>By Friday I will have finished the report.</b> Often with <b>by</b> or <b>by the time</b>.</p>' +
+        '<p><b>Be about to</b> = very soon: <b>Hurry up! The film is about to start.</b></p>' +
+        '<p><b>Be due to</b> = scheduled: <b>The train is due to arrive at six.</b></p>' +
+        '<p><b>Predictions:</b> will (opinion), be going to (evidence now): <b>Look at those clouds. It is going to rain.</b> Add probably, definitely, may well to show how sure you are.</p>' +
+        '<p><b>Time clauses:</b> after when, as soon as, before, by the time, use the present for the future: <b>I will call you as soon as I arrive.</b> Not: as soon as I will arrive.</p>',
+      examples: ['This time tomorrow I will be working.', 'By Friday I will have finished the report.', 'The meeting is about to start.', 'I will call you as soon as I arrive.']
+    },
+    exercises: [
+      mc('This time tomorrow, I ___ in a meeting.', ['will be sitting', 'will have sat', 'sit', 'am sat'], 'will be sitting', 'future continuous'),
+      mc('By the end of the month, we ___ the project.', ['will have finished', 'will be finishing', 'finish', 'are finish'], 'will have finished', 'future perfect'),
+      mc('Hurry up! The train is ___ leave.', ['about to', 'going about', 'due for', 'on'], 'about to', 'be about to'),
+      mc('I will call you as soon as I ___.', ['arrive', 'will arrive', 'arrived', 'am arriving to'], 'arrive', 'time clauses'),
+      fill('Look at those clouds. It is ___ to rain.', ['going'], 'predictions'),
+      fill('By next year, she will ___ finished her degree.', ['have'], 'future perfect'),
+      mc('Which is a polite question about someone\'s plans?', ['Will you be using the car tonight?', 'Do you use the car tonight?', 'Did you use the car tonight?', 'You use the car tonight?'], 'Will you be using the car tonight?', 'future continuous'),
+      mc('The project is two weeks behind schedule. This means it is ___.', ['late', 'early', 'on time', 'cancelled'], 'late', 'vocab'),
+      mc('"The train is due to arrive at six." means it ___ at six.', ['is scheduled to arrive', 'has arrived', 'arrived', 'cannot arrive'], 'is scheduled to arrive', 'be due to'),
+      order(['By', 'Friday', 'I', 'will', 'have', 'finished', 'the', 'report'], ['By Friday I will have finished the report'], 'future perfect'),
+      order(['This', 'time', 'next', 'week', 'I', 'will', 'be', 'travelling'], ['This time next week I will be travelling'], 'future continuous'),
+      typed('Translate: Cuma gününe kadar raporu bitirmiş olacağım.', ['By Friday I will have finished the report', 'I will have finished the report by Friday'], 'future perfect'),
+      typed('Translate: Vardığım anda seni arayacağım.', ['I will call you as soon as I arrive', 'I will phone you as soon as I arrive', 'As soon as I arrive I will call you'], 'time clauses'),
+      match([['deadline', 'son teslim tarihi'], ['postpone', 'ertelemek'], ['available', 'müsait'], ['confirm', 'onaylamak']], 'vocab')
+    ],
+    listening: [
+      lmc('This time tomorrow I will be flying to Izmir.', ['This time tomorrow I will be flying to Izmir.', 'This time tomorrow I will have flown to Izmir.', 'Yesterday I flew to Izmir.', 'This time tomorrow I fly to Izmir.'], 'This time tomorrow I will be flying to Izmir.', 'future continuous'),
+      lmc('I will have finished by five o\'clock.', ['I will have finished by five o\'clock.', 'I will be finishing at five o\'clock.', 'I have finished at five o\'clock.', 'I finished by five o\'clock.'], 'I will have finished by five o\'clock.', 'future perfect'),
+      dict('The meeting is about to start.'),
+      dict('I will call you as soon as I arrive.')
+    ],
+    speaking: [
+      speak('By Friday I will have finished the report.', 'Cumaya kadar raporu bitirmiş olacağım.'),
+      speak('This time next week I will be travelling.', 'Gelecek hafta bu saatlerde seyahatte olacağım.'),
+      speak('The project is two weeks behind schedule.', 'Proje iki hafta geride.'),
+      speak('I will confirm the date as soon as I can.', 'Tarihi mümkün olan en kısa sürede onaylayacağım.')
+    ],
+    reading: {
+      text: 'Project update\nHi everyone,\nHere is a short update. The new office is about to open, and the move is due to take place on 14 June. By then, the builders will have finished the main work, but the painters will still be working on the second floor.\nPlease pack your desks by Thursday. By the end of the week, we will have moved most of the equipment. On Monday morning the IT team will be setting up the computers, so please do not expect your email to work until noon.\nWe are slightly behind schedule because of the weather, but I am confident we will finish on time. Please confirm that you are available to help on the day.\nThanks,\nDana',
+      glossary: [['builders', 'inşaatçılar'], ['equipment', 'ekipman'], ['confident', 'emin']],
+      questions: [
+        rq('When is the move due to take place?', ['14 June', 'Thursday', 'Monday noon', 'the end of the week'], '14 June'),
+        rq('What will the IT team be doing on Monday morning?', ['setting up the computers', 'painting', 'packing desks', 'confirming dates'], 'setting up the computers'),
+        rq('Why is the project slightly late?', ['because of the weather', 'because of a strike', 'because of the painters', 'because of the IT team'], 'because of the weather')
+      ]
+    },
+    writing: {
+      prompt: 'Write a short email (about 110 words) to colleagues about a plan or event. Say what will be happening on a given day, what will have been finished by then, and what you need from them. Use the future continuous and the future perfect. (100 to 120 words)',
+      promptTR: 'Meslektaşlara bir plan veya etkinlik hakkında yaklaşık 110 kelimelik kısa bir e-posta yaz. Belirli bir günde neler olacağını, o güne kadar nelerin bitmiş olacağını ve onlardan ne istediğini yaz. Future continuous ve future perfect kullan. (100-120 kelime)',
+      minWords: 75,
+      checklist: ['Future continuous kullandım', 'Future perfect kullandım (by ...)', 'Bir tarih ve bir istek yazdım', 'Resmi ama kibar bir ton kullandım']
+    }
+  });
+
+  def('4.4', {
+    can: 'I can talk about unreal situations and regrets with second, third and mixed conditionals and wish or if only.',
+    vocab: [
+      v('regret', 'pişmanlık', 'I have no regrets about my decision.', 'Kararımdan pişman değilim.'),
+      v('decision', 'karar', 'It was a difficult decision.', 'Zor bir karardı.'),
+      v('opportunity', 'fırsat', 'I missed a great opportunity.', 'Harika bir fırsatı kaçırdım.'),
+      v('chance', 'şans, olanak', 'If I had the chance, I would travel more.', 'Şansım olsa daha çok seyahat ederdim.'),
+      v('imagine', 'hayal etmek', 'Imagine you could live anywhere.', 'İstediğin yerde yaşayabildiğini hayal et.'),
+      v('lucky', 'şanslı', 'We were lucky to find a taxi.', 'Taksi bulduğumuz için şanslıydık.'),
+      v('mistake', 'hata', 'It was a big mistake.', 'Büyük bir hataydı.'),
+      v('prevent', 'önlemek', 'Wearing a seat belt can prevent injuries.', 'Emniyet kemeri yaralanmaları önleyebilir.'),
+      v('as long as', '... şartıyla', 'You can go as long as you are back by ten.', 'Ona kadar dönmen şartıyla gidebilirsin.'),
+      v('unless', '... olmadıkça', 'I will not go unless you come.', 'Sen gelmedikçe gitmem.'),
+      v('otherwise', 'aksi halde', 'Leave now, otherwise you will miss the bus.', 'Şimdi çık, yoksa otobüsü kaçırırsın.'),
+      v('in my shoes', 'benim yerimde', 'What would you do in my shoes?', 'Benim yerimde ne yapardın?')
+    ],
+    grammar: {
+      title: 'Second, third and mixed conditionals; wish and if only',
+      html: '<p><b>Second conditional</b> (unreal present or future): <b>If + past simple, would + verb.</b> <b>If I had more time, I would learn Italian.</b> With I/he/she, <b>were</b> is common: <b>If I were you, I would apologise.</b></p>' +
+        '<p><b>Third conditional</b> (unreal past): <b>If + past perfect, would have + past participle.</b> <b>If I had left earlier, I would have caught the train.</b> The past cannot change, so it often expresses regret or relief.</p>' +
+        '<p><b>Mixed conditional</b>: a past cause with a present result: <b>If I had studied medicine, I would be a doctor now.</b></p>' +
+        '<p><b>Wish and if only</b>: <b>I wish I lived by the sea</b> (present, but I do not). <b>I wish I had studied harder</b> (past regret). <b>I wish you would be quiet</b> (annoyance about a habit or a future action). <b>If only I had more money!</b> is stronger.</p>' +
+        '<p><b>Other linkers:</b> unless (= if not), as long as, provided that, otherwise. <b>Unless you hurry, you will be late.</b></p>',
+      examples: ['If I had more time, I would learn Italian.', 'If I had left earlier, I would have caught the train.', 'I wish I had studied harder.', 'If only I lived by the sea!']
+    },
+    exercises: [
+      mc('If I ___ more time, I would learn Italian.', ['had', 'have', 'would have', 'will have'], 'had', 'second conditional'),
+      mc('If she had left earlier, she ___ the train.', ['would have caught', 'would catch', 'will catch', 'caught'], 'would have caught', 'third conditional'),
+      mc('If I ___ you, I would apologise.', ['were', 'am', 'will be', 'have been'], 'were', 'second conditional'),
+      mc('I wish I ___ harder at school. (past regret)', ['had studied', 'studied', 'would study', 'study'], 'had studied', 'wish'),
+      mc('If I had studied medicine, I ___ a doctor now.', ['would be', 'would have been', 'will be', 'was'], 'would be', 'mixed conditional'),
+      fill('If only I ___ more money!', ['had'], 'wish / if only'),
+      fill('You will be late ___ you hurry.', ['unless'], 'unless'),
+      mc('"Leave now, ___ you will miss the bus."', ['otherwise', 'unless', 'although', 'as long as'], 'otherwise', 'linkers'),
+      mc('Which sentence is about an unreal past?', ['If I had known, I would have helped.', 'If I know, I will help.', 'If I knew, I would help.', 'If I know, I help.'], 'If I had known, I would have helped.', 'third conditional'),
+      order(['If', 'I', 'had', 'the', 'chance', 'I', 'would', 'travel', 'more'], ['If I had the chance I would travel more'], 'second conditional'),
+      order(['I', 'wish', 'I', 'had', 'listened', 'to', 'her', 'advice'], ['I wish I had listened to her advice'], 'wish'),
+      typed('Translate: Daha erken çıksaydım treni yakalardım.', ['If I had left earlier I would have caught the train', 'I would have caught the train if I had left earlier'], 'third conditional'),
+      typed('Translate: Keşke denizin yanında yaşasaydım.', ['I wish I lived by the sea', 'I wish I lived near the sea', 'If only I lived by the sea'], 'wish'),
+      match([['regret', 'pişmanlık'], ['opportunity', 'fırsat'], ['prevent', 'önlemek'], ['unless', 'olmadıkça']], 'vocab')
+    ],
+    listening: [
+      lmc('If I had more time, I would learn Italian.', ['If I had more time, I would learn Italian.', 'If I have more time, I will learn Italian.', 'If I had had more time, I would have learned Italian.', 'When I have time, I learn Italian.'], 'If I had more time, I would learn Italian.', 'second conditional'),
+      lmc('I wish I had studied harder.', ['I wish I had studied harder.', 'I wish I studied harder.', 'I wish I will study harder.', 'I hope I study harder.'], 'I wish I had studied harder.', 'wish'),
+      dict('If I had left earlier, I would have caught the train.'),
+      dict('What would you do in my shoes?')
+    ],
+    speaking: [
+      speak('If I had more time, I would learn another language.', 'Daha çok vaktim olsa başka bir dil öğrenirdim.'),
+      speak('If I had left earlier, I would have caught the train.', 'Daha erken çıksaydım treni yakalardım.'),
+      speak('I wish I had studied harder at school.', 'Keşke okulda daha çok çalışsaydım.'),
+      speak('What would you do in my shoes?', 'Benim yerimde ne yapardın?')
+    ],
+    reading: {
+      text: 'A decision I think about\nTen years ago I was offered a job in London. I turned it down because my mother was ill and I did not want to leave her. Looking back, it was probably the right decision, but I sometimes wonder how my life would have been different.\nIf I had gone, I would have earned more money, and I might have met different people. If I were living in London now, I would probably be working long hours and I would see my family less often.\nI have no real regrets. As long as you make a decision for good reasons, you can live with it. Unless you try to compare every road, you can enjoy the one you took.',
+      glossary: [['turn down', 'reddetmek'], ['wonder', 'merak etmek'], ['compare', 'karşılaştırmak']],
+      questions: [
+        rq('Why did the writer refuse the job?', ['Her mother was ill.', 'The pay was low.', 'She did not like London.', 'She had another job.'], 'Her mother was ill.'),
+        rq('What would she probably be doing in London now?', ['working long hours', 'studying', 'travelling', 'resting'], 'working long hours'),
+        rq('What is her attitude now?', ['She has no real regrets.', 'She is angry.', 'She wants to move.', 'She is sure it was wrong.'], 'She has no real regrets.')
+      ]
+    },
+    writing: {
+      prompt: 'Write about an important decision (about 120 words). Say what you chose, what would have happened if you had chosen differently, and what you would do differently now. Use second, third and mixed conditionals and one sentence with wish. (110 to 130 words)',
+      promptTR: 'Önemli bir kararı anlatan yaklaşık 120 kelimelik bir yazı yaz. Ne seçtiğini, farklı seçseydin ne olacağını ve şimdi neyi farklı yapacağını yaz. Second, third ve mixed conditional ile bir wish cümlesi kullan. (110-130 kelime)',
+      minWords: 85,
+      checklist: ['Third conditional kullandım (had + past participle ... would have)', 'Second veya mixed conditional kullandım', 'Bir wish cümlesi yazdım', 'Kararımı ve nedenini açıkça yazdım']
+    }
+  });
+
+  def('4.5', {
+    can: 'I can say how sure I am about something, using must, might, can\'t and could with have + past participle, and talk about past possibility.',
+    vocab: [
+      v('evidence', 'kanıt', 'There is no evidence yet.', 'Henüz kanıt yok.'),
+      v('conclusion', 'sonuç', 'I came to a different conclusion.', 'Farklı bir sonuca vardım.'),
+      v('certain', 'kesin', 'I am certain that he left early.', 'Erken ayrıldığından eminim.'),
+      v('possible', 'mümkün', 'It is possible that she forgot.', 'Unutmuş olması mümkün.'),
+      v('unlikely', 'olası değil', 'It is unlikely that he will come.', 'Gelmesi pek olası değil.'),
+      v('clue', 'ipucu', 'The police found a clue.', 'Polis bir ipucu buldu.'),
+      v('mystery', 'gizem', 'The disappearance is still a mystery.', 'Kayboluş hâlâ bir gizem.'),
+      v('suspect', 'şüphelenmek, şüpheli', 'I suspect that he knows the answer.', 'Cevabı bildiğinden şüpheleniyorum.'),
+      v('obviously', 'açıkça', 'Obviously, someone has been here.', 'Belli ki biri buradaydı.'),
+      v('apparently', 'görünüşe göre', 'Apparently, the shop has closed.', 'Görünüşe göre dükkân kapanmış.'),
+      v('definitely', 'kesinlikle', 'She definitely left before nine.', 'Kesinlikle dokuzdan önce çıktı.'),
+      v('guess', 'tahmin etmek', 'I can only guess what happened.', 'Sadece ne olduğunu tahmin edebilirim.')
+    ],
+    grammar: {
+      title: 'Modals of deduction: must, might, could, can\'t (present and past)',
+      html: '<p><b>Present:</b> <b>must</b> (almost certain), <b>might / may / could</b> (possible), <b>can\'t</b> (almost certain it is not true).</p>' +
+        '<p><b>He has been working all day. He must be tired.</b> <b>She might be at home.</b> <b>That can\'t be his car. His car is red.</b></p>' +
+        '<p><b>Past:</b> modal + <b>have + past participle</b>: <b>He must have missed the bus</b> (I am sure). <b>She might have forgotten</b> (possible). <b>They can\'t have left</b> (I am sure they did not).</p>' +
+        '<p><b>Continuous:</b> <b>She must be working. He might have been sleeping.</b></p>' +
+        '<p><b>Not:</b> mustn\'t for deduction. Use <b>can\'t</b>. <b>He can\'t be at work. It is Sunday.</b></p>' +
+        '<p><b>Other ways to show certainty:</b> I am sure that, I doubt that, it is likely / unlikely that, apparently, obviously.</p>',
+      examples: ['He must have missed the bus.', 'She might have forgotten the meeting.', 'That can\'t be his car.', 'They could be on holiday.']
+    },
+    exercises: [
+      mc('He has been working for twelve hours. He ___ be exhausted.', ['must', 'can\'t', 'mustn\'t', 'might not'], 'must', 'present deduction'),
+      mc('The shop is dark and the door is locked. It ___ be open.', ['can\'t', 'must', 'might', 'should'], 'can\'t', 'present deduction'),
+      mc('She is late. She ___ missed the bus. (I am almost sure)', ['must have', 'might', 'can\'t', 'will have'], 'must have', 'past deduction'),
+      mc('I am not sure. He ___ left already.', ['might have', 'must', 'can\'t be', 'should'], 'might have', 'past deduction'),
+      fill('They are not answering the phone. They may ___ gone out.', ['have'], 'past deduction'),
+      fill('That ___ be Tom\'s coat. Tom is much taller. (I am sure it is not)', ['can\'t', 'cant', 'cannot'], 'present deduction'),
+      mc('Which sentence shows you are certain it did NOT happen?', ['They can\'t have seen us.', 'They might have seen us.', 'They must have seen us.', 'They could see us.'], 'They can\'t have seen us.', 'past deduction'),
+      mc('"Apparently, the shop has closed." means ___.', ['people say it has closed', 'I know it has closed', 'it will close', 'it never closes'], 'people say it has closed', 'vocab'),
+      mc('Which is NOT correct for deduction?', ['He mustn\'t be at home.', 'He can\'t be at home.', 'He must be at home.', 'He might be at home.'], 'He mustn\'t be at home.', 'present deduction'),
+      order(['He', 'must', 'have', 'missed', 'the', 'bus'], ['He must have missed the bus'], 'past deduction'),
+      order(['She', 'might', 'have', 'forgotten', 'the', 'meeting'], ['She might have forgotten the meeting'], 'past deduction'),
+      typed('Translate: O ışığı açık bırakmış olmalı.', ['He must have left the light on', 'She must have left the light on', 'They must have left the light on'], 'past deduction'),
+      typed('Translate: Bu onun arabası olamaz.', ['That can\'t be his car', 'That cannot be his car', 'That can\'t be her car', 'That cannot be her car'], 'present deduction'),
+      match([['evidence', 'kanıt'], ['clue', 'ipucu'], ['unlikely', 'olası değil'], ['obviously', 'açıkça']], 'vocab')
+    ],
+    listening: [
+      lmc('He must have missed the bus.', ['He must have missed the bus.', 'He might miss the bus.', 'He must miss the bus.', 'He should have missed the bus.'], 'He must have missed the bus.', 'past deduction'),
+      lmc('That can\'t be her car.', ['That can\'t be her car.', 'That must be her car.', 'That might be her car.', 'That can\'t have been her car.'], 'That can\'t be her car.', 'present deduction'),
+      dict('She might have forgotten the meeting.'),
+      dict('They can\'t have left yet because the light is on.', ['They can\'t have left yet because the light is on', 'They cannot have left yet because the light is on'])
+    ],
+    speaking: [
+      speak('He must have missed the bus.', 'Otobüsü kaçırmış olmalı.'),
+      speak('She might have forgotten about the meeting.', 'Toplantıyı unutmuş olabilir.'),
+      speak('That can\'t be his car. His car is red.', 'Bu onun arabası olamaz. Onunki kırmızı.'),
+      speak('Apparently, the shop has closed down.', 'Görünüşe göre dükkân kapanmış.')
+    ],
+    reading: {
+      text: 'The missing bicycle\nOn Monday morning Sam found that his bicycle was not outside his flat. He looked for clues. The lock was on the ground, and it was cut.\n"Someone must have taken it during the night," he told his neighbour. "It can\'t have been a child, because the lock is very strong."\nHis neighbour said she had heard a noise at about two o\'clock. "It might have been the thief," she said. Apparently, a similar bicycle had disappeared from the next street last week.\nSam called the police. They said they could not be certain, but it was likely that the same person had taken both. Sam felt sad, but he was glad he had insurance.',
+      glossary: [['lock', 'kilit'], ['thief', 'hırsız'], ['insurance', 'sigorta']],
+      questions: [
+        rq('What did Sam find on the ground?', ['a cut lock', 'a bicycle', 'a note', 'a helmet'], 'a cut lock'),
+        rq('What did the neighbour hear?', ['a noise at about two o\'clock', 'a bicycle bell', 'the police', 'nothing'], 'a noise at about two o\'clock'),
+        rq('What did the police think?', ['The same person probably took both bicycles.', 'Sam lost the bicycle.', 'A child took it.', 'It was an accident.'], 'The same person probably took both bicycles.')
+      ]
+    },
+    writing: {
+      prompt: 'Describe a small mystery (about 110 words): something unexpected you found or something that happened. Give two or three possible explanations using must have, might have and can\'t have. (100 to 120 words)',
+      promptTR: 'Küçük bir gizemi anlatan yaklaşık 110 kelimelik bir yazı yaz: beklenmedik bir şey buldun veya bir şey oldu. must have, might have ve can\'t have ile iki veya üç olası açıklama yaz. (100-120 kelime)',
+      minWords: 75,
+      checklist: ['must have kullandım', 'might have veya could have kullandım', 'can\'t have kullandım', 'Olayı açık biçimde anlattım']
+    }
+  });
+
+  def('4.6', {
+    can: 'I can give extra detail about people, places and things with defining and non-defining relative clauses.',
+    vocab: [
+      v('neighbourhood', 'mahalle', 'It is a quiet neighbourhood.', 'Sakin bir mahalle.'),
+      v('landlord', 'ev sahibi', 'The landlord who owns the flat lives abroad.', 'Evin sahibi yurt dışında yaşıyor.'),
+      v('colleague', 'iş arkadaşı', 'My colleague, who is from Spain, speaks four languages.', 'İş arkadaşım, İspanyalı, dört dil konuşuyor.'),
+      v('describe', 'tanımlamak', 'Can you describe the person who called?', 'Arayan kişiyi tarif edebilir misin?'),
+      v('nearby', 'yakında', 'There is a park nearby.', 'Yakında bir park var.'),
+      v('well known', 'ünlü', 'It is a well known restaurant.', 'Ünlü bir restoran.'),
+      v('reason', 'neden', 'That is the reason why I left.', 'Ayrılmamın nedeni bu.'),
+      v('moment', 'an', 'I remember the moment when we met.', 'Tanıştığımız anı hatırlıyorum.'),
+      v('belong to', '... ait olmak', 'This bag belongs to my sister.', 'Bu çanta kız kardeşime ait.'),
+      v('modern', 'modern', 'It is a very modern building.', 'Çok modern bir bina.'),
+      v('relative clause', 'ilgi cümleciği', 'A relative clause gives extra information.', 'İlgi cümleciği ek bilgi verir.'),
+      v('whose', 'kimin', 'The man whose car was stolen called the police.', 'Arabası çalınan adam polisi aradı.')
+    ],
+    grammar: {
+      title: 'Relative clauses: defining and non-defining',
+      html: '<p><b>Defining</b> relative clauses say <b>which</b> one: <b>The woman who lives upstairs is a nurse.</b> No commas. You can often use <b>that</b>, and you can leave out the pronoun when it is the object: <b>The book (that) I read was good.</b></p>' +
+        '<p><b>Non-defining</b> relative clauses add extra information. Use <b>commas</b>. <b>My sister, who lives in Leeds, is a teacher.</b> You cannot use <b>that</b>, and you cannot leave the pronoun out.</p>' +
+        '<p><b>Pronouns:</b> <b>who</b> (people), <b>which</b> (things), <b>that</b> (people or things, defining only), <b>whose</b> (possession), <b>where</b> (place), <b>when</b> (time), <b>why</b> (reason).</p>' +
+        '<p><b>Whose:</b> <b>The man whose car was stolen called the police.</b></p>' +
+        '<p><b>With a preposition:</b> <b>The man I spoke to</b> (informal) / <b>The man to whom I spoke</b> (formal). <b>The house in which she lives</b> (formal).</p>' +
+        '<p><b>Which</b> can refer to a whole clause: <b>He passed his exam, which surprised everyone.</b></p>',
+      examples: ['The woman who lives upstairs is a nurse.', 'My sister, who lives in Leeds, is a teacher.', 'The man whose car was stolen called the police.', 'He passed his exam, which surprised everyone.']
+    },
+    exercises: [
+      mc('The woman ___ lives upstairs is a nurse.', ['who', 'which', 'whose', 'where'], 'who', 'defining'),
+      mc('My sister, ___ lives in Leeds, is a teacher.', ['who', 'that', 'whose', 'what'], 'who', 'non-defining'),
+      mc('The man ___ car was stolen called the police.', ['whose', 'who', 'which', 'whom'], 'whose', 'whose'),
+      mc('Which sentence needs commas?', ['My brother, who is a pilot, lives in Dubai.', 'The man who called is waiting.', 'The book that I read was good.', 'The shop where I work is closed.'], 'My brother, who is a pilot, lives in Dubai.', 'non-defining'),
+      mc('Which sentence is correct?', ['The book I read was good.', 'The book what I read was good.', 'The book who I read was good.', 'The book I read it was good.'], 'The book I read was good.', 'defining'),
+      fill('That is the town ___ I was born.', ['where'], 'where'),
+      fill('He passed his exam, ___ surprised everyone.', ['which'], 'which'),
+      mc('In which sentence can you NOT use "that"?', ['My car, which is old, is red.', 'The car that I bought is red.', 'The man that called is here.', 'The film that I saw was long.'], 'My car, which is old, is red.', 'non-defining'),
+      mc('"The reason ___ I left was simple."', ['why', 'where', 'who', 'whose'], 'why', 'why'),
+      order(['The', 'woman', 'who', 'lives', 'upstairs', 'is', 'a', 'nurse'], ['The woman who lives upstairs is a nurse'], 'defining'),
+      order(['He', 'passed', 'his', 'exam', 'which', 'surprised', 'everyone'], ['He passed his exam which surprised everyone'], 'which'),
+      typed('Translate: Arabası çalınan adam polisi aradı.', ['The man whose car was stolen called the police'], 'whose'),
+      typed('Join: I met a woman. She speaks five languages. (use who)', ['I met a woman who speaks five languages'], 'defining'),
+      match([['neighbourhood', 'mahalle'], ['landlord', 'ev sahibi'], ['colleague', 'iş arkadaşı'], ['nearby', 'yakında']], 'vocab')
+    ],
+    listening: [
+      lmc('The woman who lives upstairs is a nurse.', ['The woman who lives upstairs is a nurse.', 'The woman whose lives upstairs is a nurse.', 'The woman who lived upstairs is a nurse.', 'The woman who lives upstairs was a nurse.'], 'The woman who lives upstairs is a nurse.', 'defining'),
+      lmc('My sister, who lives in Leeds, is a teacher.', ['My sister, who lives in Leeds, is a teacher.', 'My sister, which lives in Leeds, is a teacher.', 'My sister lives in Leeds, which is a teacher.', 'My sister, whose lives in Leeds, is a teacher.'], 'My sister, who lives in Leeds, is a teacher.', 'non-defining'),
+      dict('The man whose car was stolen called the police.'),
+      dict('He passed his exam, which surprised everyone.')
+    ],
+    speaking: [
+      speak('The woman who lives upstairs is a nurse.', 'Üst katta yaşayan kadın hemşire.'),
+      speak('My sister, who lives in Leeds, is a teacher.', 'Leeds\'te yaşayan kız kardeşim öğretmen.'),
+      speak('That is the town where I was born.', 'Burası doğduğum kasaba.'),
+      speak('He passed his exam, which surprised everyone.', 'Sınavı geçti ve bu herkesi şaşırttı.')
+    ],
+    reading: {
+      text: 'My neighbourhood\nI live in a neighbourhood which is quiet but friendly. The flat where I live is on the second floor of an old building. My landlord, who lives abroad, rarely visits, and the neighbour who lives upstairs looks after the building.\nNearby there is a market that opens on Saturdays. The woman whose stall sells cheese is a friend of mine, and she always gives me something to try, which is very kind.\nThe reason why I love this place is simple: people say hello to each other. That is something I did not expect when I moved to the UK.',
+      glossary: [['stall', 'tezgâh'], ['rarely', 'nadiren'], ['look after', 'bakmak']],
+      questions: [
+        rq('Where does the landlord live?', ['abroad', 'upstairs', 'next door', 'in the market'], 'abroad'),
+        rq('What does the cheese seller do?', ['She gives the writer something to try.', 'She lives upstairs.', 'She owns the building.', 'She works on Sundays.'], 'She gives the writer something to try.'),
+        rq('Why does the writer love the neighbourhood?', ['People say hello to each other.', 'It is cheap.', 'It is near work.', 'It has a park.'], 'People say hello to each other.')
+      ]
+    },
+    writing: {
+      prompt: 'Describe the place where you live and two people you know (about 120 words). Use at least four relative clauses, with who, which, where and whose, and at least one non-defining clause with commas. (110 to 130 words)',
+      promptTR: 'Yaşadığın yeri ve tanıdığın iki kişiyi anlatan yaklaşık 120 kelimelik bir yazı yaz. who, which, where ve whose ile en az dört ilgi cümleciği, ve virgüllü en az bir non-defining cümlecik kullan. (110-130 kelime)',
+      minWords: 85,
+      checklist: ['En az dört relative clause kullandım', 'Virgüllü bir non-defining clause kullandım', 'whose veya where kullandım', 'Kişi ve yeri açıkça betimledim']
+    }
+  });
+
+  def('4.7', {
+    can: 'I can use the passive in different tenses, with modals, and in reporting forms such as it is said that, and use have something done.',
+    vocab: [
+      v('repair', 'tamir etmek', 'I had my phone repaired.', 'Telefonumu tamir ettirdim.'),
+      v('install', 'kurmak', 'The new boiler was installed last week.', 'Yeni kombi geçen hafta kuruldu.'),
+      v('deliver', 'teslim etmek', 'The parcel will be delivered tomorrow.', 'Paket yarın teslim edilecek.'),
+      v('damage', 'zarar vermek, hasar', 'The storm damaged the roof.', 'Fırtına çatıya zarar verdi.'),
+      v('invent', 'icat etmek', 'The telephone was invented in 1876.', 'Telefon 1876\'da icat edildi.'),
+      v('responsible', 'sorumlu', 'Who is responsible for this?', 'Bundan kim sorumlu?'),
+      v('according to', '... göre', 'According to the report, sales have fallen.', 'Rapora göre satışlar düştü.'),
+      v('rumour', 'söylenti', 'There is a rumour that he is leaving.', 'Ayrıldığına dair bir söylenti var.'),
+      v('arrest', 'tutuklamak', 'The man was arrested yesterday.', 'Adam dün tutuklandı.'),
+      v('estimate', 'tahmin etmek', 'It is estimated that 5000 people came.', '5000 kişinin geldiği tahmin ediliyor.'),
+      v('get something done', 'bir şeyi yaptırmak', 'I need to get my hair cut.', 'Saçımı kestirmem lazım.'),
+      v('by hand', 'elle', 'The cakes are made by hand.', 'Pastalar elle yapılır.')
+    ],
+    grammar: {
+      title: 'The passive in all tenses, reporting passives and have something done',
+      html: '<p><b>Form:</b> be + past participle. The tense is shown by <b>be</b>. <b>Present simple:</b> It is made in Turkey. <b>Past:</b> It was made in 1990. <b>Present perfect:</b> It has been repaired. <b>Future:</b> It will be delivered. <b>Continuous:</b> It is being cleaned. <b>Modal:</b> It must be finished. It could have been avoided.</p>' +
+        '<p><b>Use the passive</b> when the doer is unknown or not important, or when you want to focus on the action. Add <b>by</b> only if the doer matters: <b>The room was cleaned by the new staff.</b></p>' +
+        '<p><b>Reporting passives</b> (news style): <b>It is said that he is rich. / He is said to be rich.</b> <b>It was believed that the bridge was safe. / The bridge was believed to be safe.</b> Also: known, thought, reported, expected, estimated.</p>' +
+        '<p><b>Have something done</b> = someone else does it for you: <b>I had my car repaired. I am having the kitchen painted.</b> Informal: <b>get</b> something done. Do not confuse it with <b>I repaired my car</b> (I did it myself).</p>' +
+        '<p><b>Passive of verbs with two objects:</b> <b>She was given a prize. A prize was given to her.</b></p>',
+      examples: ['The parcel will be delivered tomorrow.', 'The bridge is said to be unsafe.', 'I had my phone repaired.', 'The roof was damaged in the storm.']
+    },
+    exercises: [
+      mc('The parcel ___ tomorrow.', ['will be delivered', 'will deliver', 'is delivering', 'delivered'], 'will be delivered', 'passive future'),
+      mc('The kitchen ___ at the moment. (it is happening now)', ['is being painted', 'is painted', 'has painted', 'was paint'], 'is being painted', 'passive continuous'),
+      mc('The telephone ___ in 1876.', ['was invented', 'invented', 'is invented', 'has invented'], 'was invented', 'passive past'),
+      mc('The report ___ yet.', ['has not been finished', 'did not finish', 'has not finished', 'is not finish'], 'has not been finished', 'passive perfect'),
+      mc('Which sentence means someone else repaired the car?', ['I had my car repaired.', 'I repaired my car.', 'I have repaired my car myself.', 'I was repairing my car.'], 'I had my car repaired.', 'have something done'),
+      fill('I need to get my hair ___.', ['cut'], 'have something done'),
+      fill('He is said ___ be very rich.', ['to'], 'reporting passive'),
+      mc('"It is estimated that 5000 people came." means ___.', ['people think about 5000 came', 'exactly 5000 came', 'nobody came', 'they will come'], 'people think about 5000 came', 'reporting passive'),
+      mc('Which sentence is correct?', ['The window was broken by a ball.', 'The window broke by a ball.', 'The window was break by a ball.', 'The window has broke by a ball.'], 'The window was broken by a ball.', 'passive'),
+      mc('When is "by + doer" necessary?', ['when the doer is important', 'always', 'never', 'only with the future'], 'when the doer is important', 'passive'),
+      order(['The', 'new', 'boiler', 'was', 'installed', 'last', 'week'], ['The new boiler was installed last week'], 'passive past'),
+      order(['She', 'is', 'having', 'her', 'house', 'painted'], ['She is having her house painted'], 'have something done'),
+      typed('Translate: Paket yarın teslim edilecek.', ['The parcel will be delivered tomorrow'], 'passive future'),
+      typed('Translate: Telefonumu tamir ettirdim.', ['I had my phone repaired', 'I got my phone repaired'], 'have something done'),
+      match([['repair', 'tamir etmek'], ['install', 'kurmak'], ['arrest', 'tutuklamak'], ['rumour', 'söylenti']], 'vocab')
+    ],
+    listening: [
+      lmc('The parcel will be delivered tomorrow.', ['The parcel will be delivered tomorrow.', 'The parcel was delivered tomorrow.', 'The parcel has delivered tomorrow.', 'The parcel will deliver tomorrow.'], 'The parcel will be delivered tomorrow.', 'passive'),
+      lmc('I had my phone repaired last week.', ['I had my phone repaired last week.', 'I repaired my phone last week.', 'I have my phone repaired last week.', 'I was repairing my phone last week.'], 'I had my phone repaired last week.', 'have something done'),
+      dict('The bridge is said to be unsafe.'),
+      dict('The roof was damaged in the storm.')
+    ],
+    speaking: [
+      speak('The new boiler was installed last week.', 'Yeni kombi geçen hafta kuruldu.'),
+      speak('I had my phone repaired yesterday.', 'Dün telefonumu tamir ettirdim.'),
+      speak('According to the report, sales have fallen.', 'Rapora göre satışlar düştü.'),
+      speak('The bridge is said to be unsafe.', 'Köprünün güvenli olmadığı söyleniyor.')
+    ],
+    reading: {
+      text: 'Storm damage\nLast Thursday a storm hit our town. Several trees were blown down and the roof of the old library was badly damaged. According to the council, about 200 homes were left without power for a few hours.\nIt is estimated that the repairs will cost more than £50,000. The library is expected to stay closed for two months, and a new roof will be installed in the spring.\nMy own house was not damaged, but a fence was knocked over. I am having it replaced next week. I think the council has been well organised, and the main roads were cleared by midday.',
+      glossary: [['blown down', 'devrildi'], ['fence', 'çit'], ['cleared', 'temizlendi']],
+      questions: [
+        rq('What was damaged at the old library?', ['the roof', 'the windows', 'the books', 'the door'], 'the roof'),
+        rq('How long is the library expected to stay closed?', ['two months', 'two days', 'a year', 'a week'], 'two months'),
+        rq('What is the writer having done next week?', ['a fence replaced', 'a roof repaired', 'a tree cut', 'a car washed'], 'a fence replaced')
+      ]
+    },
+    writing: {
+      prompt: 'Write a short news report (about 110 words) about an event in your town, real or imagined. Use at least four passive forms, one reporting passive (is said to, is expected to) and one have something done. (100 to 120 words)',
+      promptTR: 'Kasabandaki gerçek veya hayali bir olay hakkında yaklaşık 110 kelimelik kısa bir haber yaz. En az dört edilgen yapı, bir reporting passive (is said to, is expected to) ve bir have something done kullan. (100-120 kelime)',
+      minWords: 75,
+      checklist: ['En az dört passive kullandım', 'Reporting passive kullandım', 'Have something done kullandım', 'Haber net ve objektif']
+    }
+  });
+
+  def('4.8', {
+    can: 'I can report what people said, asked and promised, using a range of reporting verbs and the correct verb patterns.',
+    vocab: [
+      v('admit', 'kabul etmek, itiraf etmek', 'He admitted that he had made a mistake.', 'Hata yaptığını kabul etti.'),
+      v('deny', 'inkâr etmek', 'She denied taking the money.', 'Parayı aldığını inkâr etti.'),
+      v('suggest', 'önermek', 'He suggested going to the cinema.', 'Sinemaya gitmeyi önerdi.'),
+      v('advise', 'tavsiye etmek', 'The doctor advised me to rest.', 'Doktor dinlenmemi tavsiye etti.'),
+      v('promise', 'söz vermek', 'She promised to call me.', 'Beni arayacağına söz verdi.'),
+      v('refuse', 'reddetmek', 'He refused to answer.', 'Cevap vermeyi reddetti.'),
+      v('warn', 'uyarmak', 'They warned us not to go out.', 'Bizi dışarı çıkmamamız için uyardılar.'),
+      v('apologise', 'özür dilemek', 'She apologised for being late.', 'Geç kaldığı için özür diledi.'),
+      v('accuse', 'suçlamak', 'He accused her of lying.', 'Onu yalan söylemekle suçladı.'),
+      v('invite', 'davet etmek', 'They invited me to join them.', 'Bana katılmamı teklif ettiler.'),
+      v('insist', 'ısrar etmek', 'She insisted on paying.', 'Ödemekte ısrar etti.'),
+      v('remind', 'hatırlatmak', 'He reminded me to lock the door.', 'Bana kapıyı kilitlememi hatırlattı.')
+    ],
+    grammar: {
+      title: 'Reported speech: reporting verbs and verb patterns',
+      html: '<p><b>Tense changes (backshift):</b> present → past, past → past perfect, will → would, can → could. <b>"I am tired." → She said she was tired.</b> <b>"I have finished." → He said he had finished.</b> No change is needed if the fact is still true: <b>She said she lives in Leeds.</b></p>' +
+        '<p><b>Time and place:</b> now → then, today → that day, yesterday → the day before, tomorrow → the next day, here → there.</p>' +
+        '<p><b>Reporting verbs have patterns:</b></p>' +
+        '<p>+ <b>to + verb:</b> promise, refuse, offer, agree. <b>She promised to call.</b></p>' +
+        '<p>+ <b>object + to + verb:</b> advise, warn, remind, invite, tell, ask. <b>He reminded me to lock the door.</b></p>' +
+        '<p>+ <b>-ing:</b> admit, deny, suggest. <b>He denied taking the money. She suggested going out.</b></p>' +
+        '<p>+ <b>preposition + -ing:</b> apologise for, insist on, accuse someone of. <b>She apologised for being late.</b></p>' +
+        '<p>+ <b>that-clause:</b> say, explain, claim, admit, complain. <b>He claimed that he was innocent.</b></p>' +
+        '<p><b>Questions:</b> yes/no with <b>if / whether</b>, normal word order: <b>"Are you ready?" → He asked if I was ready.</b> <b>"Where do you live?" → She asked where I lived.</b></p>',
+      examples: ['She promised to call me.', 'He denied taking the money.', 'The doctor advised me to rest.', 'She asked where I lived.']
+    },
+    exercises: [
+      mc('She ___ to call me tonight.', ['promised', 'suggested', 'denied', 'admitted'], 'promised', 'patterns'),
+      mc('He ___ taking the money.', ['denied', 'refused', 'promised', 'advised'], 'denied', 'patterns'),
+      mc('The doctor advised me ___ more.', ['to rest', 'resting', 'rest', 'that rest'], 'to rest', 'patterns'),
+      mc('She apologised ___ being late.', ['for', 'of', 'about', 'to'], 'for', 'patterns'),
+      mc('"I have finished." → He said he ___ finished.', ['had', 'has', 'have', 'was'], 'had', 'backshift'),
+      mc('"Where do you live?" → She asked me where I ___.', ['lived', 'do live', 'live do', 'living'], 'lived', 'reported questions'),
+      fill('"Are you ready?" → He asked ___ I was ready.', ['if', 'whether'], 'reported questions'),
+      fill('She insisted ___ paying for the meal.', ['on'], 'patterns'),
+      mc('"I will help you tomorrow." → She said she ___ help me the next day.', ['would', 'will', 'could be', 'did'], 'would', 'backshift'),
+      mc('Which is correct?', ['He suggested going to the cinema.', 'He suggested to go to the cinema.', 'He suggested me going to the cinema.', 'He suggested we to go.'], 'He suggested going to the cinema.', 'patterns'),
+      order(['He', 'reminded', 'me', 'to', 'lock', 'the', 'door'], ['He reminded me to lock the door'], 'patterns'),
+      order(['She', 'asked', 'where', 'I', 'lived'], ['She asked where I lived'], 'reported questions'),
+      typed('Translate: Geç kaldığı için özür diledi.', ['She apologised for being late', 'He apologised for being late'], 'patterns'),
+      typed('Report: "I am tired," she said.', ['She said she was tired', 'She said that she was tired'], 'backshift'),
+      match([['admit', 'kabul etmek'], ['deny', 'inkâr etmek'], ['warn', 'uyarmak'], ['insist', 'ısrar etmek']], 'vocab')
+    ],
+    listening: [
+      lmc('She promised to call me tonight.', ['She promised to call me tonight.', 'She suggested calling me tonight.', 'She denied calling me tonight.', 'She promised calling me tonight.'], 'She promised to call me tonight.', 'patterns'),
+      lmc('He asked me if I was ready.', ['He asked me if I was ready.', 'He asked me if I am ready.', 'He told me I was ready.', 'He asked me was I ready.'], 'He asked me if I was ready.', 'reported questions'),
+      dict('The doctor advised me to rest.'),
+      dict('He denied taking the money.')
+    ],
+    speaking: [
+      speak('She promised to call me tonight.', 'Bu akşam beni arayacağına söz verdi.'),
+      speak('He apologised for being late.', 'Geç kaldığı için özür diledi.'),
+      speak('The doctor advised me to rest.', 'Doktor dinlenmemi tavsiye etti.'),
+      speak('She asked me where I lived.', 'Nerede yaşadığımı sordu.')
+    ],
+    reading: {
+      text: 'The meeting\nYesterday I had an important meeting with my manager. She asked me how the project was going, and I explained that we were two weeks behind. She did not seem angry. She advised me to talk to the client at once.\nI admitted that I should have called earlier. My manager reminded me to send an update every Friday, and she warned me not to promise a date I could not keep. I apologised for the delay and promised to write to the client that afternoon.\nAfter the meeting a colleague asked whether I was worried. I said I was a little, but I thought it had gone well.',
+      glossary: [['at once', 'hemen'], ['update', 'güncelleme'], ['keep a date', 'tarihe yetişmek']],
+      questions: [
+        rq('What did the manager advise?', ['to talk to the client at once', 'to cancel the project', 'to take a holiday', 'to change the date'], 'to talk to the client at once'),
+        rq('What did the writer promise?', ['to write to the client that afternoon', 'to finish in a week', 'to call every Friday', 'to leave the project'], 'to write to the client that afternoon'),
+        rq('What did the manager warn the writer about?', ['not to promise a date he could not keep', 'not to be late', 'not to miss Friday', 'not to call the client'], 'not to promise a date he could not keep')
+      ]
+    },
+    writing: {
+      prompt: 'Report a conversation you had recently (about 120 words), a phone call, a meeting or a chat with a friend. Use at least five different reporting verbs (for example promised, advised, apologised, asked, admitted). (110 to 130 words)',
+      promptTR: 'Son zamanlarda yaptığın bir konuşmayı (telefon, toplantı veya arkadaşla sohbet) yaklaşık 120 kelimeyle aktar. promised, advised, apologised, asked, admitted gibi en az beş farklı aktarma fiili kullan. (110-130 kelime)',
+      minWords: 85,
+      checklist: ['En az beş farklı reporting verb kullandım', 'Fiil kalıplarını doğru kullandım (promised to, denied -ing)', 'Zaman kaymasını (backshift) uyguladım', 'En az bir dolaylı soru yazdım']
+    }
+  });
+
+  def('4.9', {
+    can: 'I can link ideas and build a balanced argument, using contrast, concession, cause, result and addition.',
+    vocab: [
+      v('advantage', 'avantaj', 'One advantage is the lower cost.', 'Bir avantaj düşük maliyet.'),
+      v('disadvantage', 'dezavantaj', 'The main disadvantage is the noise.', 'Ana dezavantaj gürültü.'),
+      v('however', 'ancak', 'It is cheap. However, it is slow.', 'Ucuz. Ancak yavaş.'),
+      v('therefore', 'bu nedenle', 'He was ill. Therefore, he stayed at home.', 'Hastaydı. Bu nedenle evde kaldı.'),
+      v('moreover', 'dahası', 'It is cheap. Moreover, it is fast.', 'Ucuz. Dahası hızlı.'),
+      v('whereas', '... iken, oysa', 'She likes tea, whereas he prefers coffee.', 'O çay sever, oysa o kahveyi tercih eder.'),
+      v('despite', '... -e rağmen', 'Despite the rain, we went out.', 'Yağmura rağmen dışarı çıktık.'),
+      v('in spite of', '... -e rağmen', 'In spite of the cost, we bought it.', 'Maliyete rağmen aldık.'),
+      v('as a result', 'sonuç olarak', 'Prices rose. As a result, sales fell.', 'Fiyatlar arttı. Sonuç olarak satışlar düştü.'),
+      v('on the other hand', 'öte yandan', 'On the other hand, it is expensive.', 'Öte yandan pahalı.'),
+      v('in addition', 'ek olarak', 'In addition, the service is excellent.', 'Ek olarak hizmet mükemmel.'),
+      v('overall', 'genel olarak', 'Overall, I think it is a good idea.', 'Genel olarak bence iyi bir fikir.')
+    ],
+    grammar: {
+      title: 'Linking ideas: contrast, concession, cause, result and addition',
+      html: '<p><b>Contrast:</b> <b>but, however, on the other hand, whereas, while.</b> <b>The flat is cheap. However, it is far from the centre.</b> <b>She likes tea, whereas he prefers coffee.</b></p>' +
+        '<p><b>Concession</b> (although it is true, still...): <b>although / even though / though + clause</b>: <b>Although it was raining, we went out.</b> <b>despite / in spite of + noun or -ing</b>: <b>Despite the rain, we went out. Despite being tired, he worked.</b> Do not use <b>despite of</b>. You can also say <b>despite the fact that</b> + clause.</p>' +
+        '<p><b>Cause:</b> <b>because + clause; because of / due to + noun</b>: <b>We stayed at home because of the weather.</b> <b>since / as</b> are more formal than because.</p>' +
+        '<p><b>Result:</b> <b>so, therefore, as a result, consequently.</b> <b>Prices rose. As a result, sales fell.</b></p>' +
+        '<p><b>Addition:</b> <b>and, also, in addition, moreover, as well as.</b></p>' +
+        '<p><b>Punctuation:</b> a full stop or semicolon before <b>however / therefore</b> and a comma after: <b>It is cheap. However, it is slow.</b></p>' +
+        '<p><b>Balanced argument:</b> 1) Introduce the topic. 2) Advantages. 3) Disadvantages. 4) Your overall opinion.</p>',
+      examples: ['Although it was raining, we went out.', 'Despite the rain, we went out.', 'It is cheap. However, it is slow.', 'Prices rose. As a result, sales fell.']
+    },
+    exercises: [
+      mc('___ it was raining, we went out.', ['Although', 'Despite', 'Because', 'Therefore'], 'Although', 'concession'),
+      mc('___ the rain, we went out.', ['Despite', 'Although', 'Whereas', 'So'], 'Despite', 'concession'),
+      mc('The flat is cheap. ___, it is far from the centre.', ['However', 'Therefore', 'Because', 'Moreover'], 'However', 'contrast'),
+      mc('Prices rose. ___, sales fell.', ['As a result', 'Whereas', 'Although', 'Despite'], 'As a result', 'result'),
+      mc('She likes tea, ___ he prefers coffee.', ['whereas', 'despite', 'therefore', 'because of'], 'whereas', 'contrast'),
+      fill('We stayed at home ___ of the weather.', ['because'], 'cause'),
+      fill('He worked ___ being tired.', ['despite'], 'concession'),
+      mc('Which sentence is correct?', ['In spite of the cost, we bought it.', 'In spite of the cost of, we bought it.', 'Despite of the cost, we bought it.', 'In spite the cost, we bought it.'], 'In spite of the cost, we bought it.', 'concession'),
+      mc('Which linker ADDS information?', ['Moreover', 'However', 'Whereas', 'Although'], 'Moreover', 'addition'),
+      mc('Which one is NOT a linker of contrast?', ['Moreover', 'However', 'Whereas', 'On the other hand'], 'Moreover', 'contrast'),
+      order(['Despite', 'the', 'rain', 'we', 'went', 'out'], ['Despite the rain we went out'], 'concession'),
+      order(['It', 'is', 'cheap', 'however', 'it', 'is', 'slow'], ['It is cheap however it is slow'], 'contrast'),
+      typed('Translate: Yağmura rağmen dışarı çıktık.', ['Despite the rain we went out', 'In spite of the rain we went out', 'Although it was raining we went out'], 'concession'),
+      typed('Join with whereas: She likes tea. He prefers coffee.', ['She likes tea whereas he prefers coffee'], 'contrast'),
+      match([['advantage', 'avantaj'], ['therefore', 'bu nedenle'], ['moreover', 'dahası'], ['overall', 'genel olarak']], 'vocab')
+    ],
+    listening: [
+      lmc('Although it was raining, we went out.', ['Although it was raining, we went out.', 'Because it was raining, we went out.', 'It was raining, so we stayed in.', 'Despite it was raining, we went out.'], 'Although it was raining, we went out.', 'concession'),
+      lmc('It is cheap. However, it is slow.', ['It is cheap. However, it is slow.', 'It is cheap. Therefore, it is slow.', 'It is cheap. Moreover, it is slow.', 'It is cheap because it is slow.'], 'It is cheap. However, it is slow.', 'contrast'),
+      dict('Prices rose. As a result, sales fell.'),
+      dict('Overall, I think it is a good idea.')
+    ],
+    speaking: [
+      speak('Although it was raining, we went out.', 'Yağmur yağmasına rağmen dışarı çıktık.'),
+      speak('One advantage is the lower cost. However, there is a disadvantage.', 'Bir avantaj düşük maliyet. Ancak bir dezavantaj da var.'),
+      speak('She likes tea, whereas he prefers coffee.', 'O çay sever, oysa o kahveyi tercih eder.'),
+      speak('Overall, I think it is a good idea.', 'Genel olarak bence iyi bir fikir.')
+    ],
+    reading: {
+      text: 'Working from home\nMany people now work from home at least part of the week. There are clear advantages. You save time and money because you do not travel, and you can organise your day more freely. In addition, many people say they concentrate better in a quiet room.\nHowever, there are disadvantages too. Some people feel lonely, whereas others find it hard to separate work from free time. Moreover, small homes are not always suitable for a desk and a computer.\nDespite these problems, most workers say they do not want to return to the office full time. Overall, a mix of office days and home days seems to suit most people best.',
+      glossary: [['concentrate', 'odaklanmak'], ['separate', 'ayırmak'], ['suitable', 'uygun']],
+      questions: [
+        rq('What is one advantage of working from home?', ['You save time and money.', 'You always meet colleagues.', 'You get a bigger home.', 'You work fewer hours.'], 'You save time and money.'),
+        rq('What is one disadvantage?', ['Some people feel lonely.', 'The commute is longer.', 'The pay is lower.', 'The office is far.'], 'Some people feel lonely.'),
+        rq('What does the writer conclude?', ['A mix of office and home days suits most people.', 'Everyone should work at home.', 'Offices are better.', 'Nobody likes working at home.'], 'A mix of office and home days suits most people.')
+      ]
+    },
+    writing: {
+      prompt: 'Write a balanced essay (about 150 words) on the advantages and disadvantages of one topic, for example living in a city, online shopping or learning a language as an adult. Use at least six different linkers and give your overall opinion. (140 to 160 words)',
+      promptTR: 'Bir konunun (örneğin şehirde yaşamak, internetten alışveriş veya yetişkinken dil öğrenmek) avantaj ve dezavantajlarını anlatan yaklaşık 150 kelimelik dengeli bir deneme yaz. En az altı farklı bağlaç kullan ve genel görüşünü yaz. (140-160 kelime)',
+      minWords: 100,
+      checklist: ['En az altı farklı bağlaç kullandım', 'Avantaj ve dezavantajları yazdım', 'Despite / although doğru kullandım', 'Overall ile görüşümü yazdım']
+    }
+  });
+
+  def('4.10', {
+    can: 'I can take part in meetings and interviews: ask and answer politely, ask indirect questions and explain my experience.',
+    vocab: [
+      v('agenda', 'gündem', 'Let us look at the agenda.', 'Gündeme bakalım.'),
+      v('minutes', 'toplantı tutanağı', 'Could you take the minutes?', 'Tutanağı tutar mısınız?'),
+      v('colleague', 'iş arkadaşı', 'I will ask my colleague.', 'İş arkadaşıma soracağım.'),
+      v('deadline', 'son tarih', 'We need to meet the deadline.', 'Son tarihe yetişmeliyiz.'),
+      v('experience', 'deneyim', 'I have five years of experience.', 'Beş yıllık deneyimim var.'),
+      v('strength', 'güçlü yön', 'My main strength is organisation.', 'Ana güçlü yönüm organizasyon.'),
+      v('weakness', 'zayıf yön', 'My weakness is public speaking.', 'Zayıf yönüm topluluk önünde konuşma.'),
+      v('responsibility', 'sorumluluk', 'I took on more responsibility.', 'Daha fazla sorumluluk aldım.'),
+      v('achievement', 'başarı', 'My greatest achievement was the launch.', 'En büyük başarım lansmandı.'),
+      v('notice period', 'ihbar süresi', 'My notice period is one month.', 'İhbar sürem bir ay.'),
+      v('salary', 'maaş', 'What is the salary for this role?', 'Bu pozisyonun maaşı nedir?'),
+      v('follow up', 'takip etmek', 'I will follow up by email.', 'E-postayla takip edeceğim.')
+    ],
+    grammar: {
+      title: 'Meetings and interviews: polite questions, indirect questions and useful phrases',
+      html: '<p><b>Indirect questions</b> are more polite. Use normal word order and no do/does/did: <b>Do you know what time the meeting starts?</b> (not: what time does the meeting start). <b>Could you tell me where the room is? I wonder if you could help me.</b> For yes/no use <b>if / whether</b>.</p>' +
+        '<p><b>Polite requests:</b> <b>Would you mind sending me the file? Could I ask you to ...? Would it be possible to ...?</b></p>' +
+        '<p><b>In meetings:</b> <b>Let us start with the first item. Can I add something? I see what you mean, but ... Could we come back to that later? To sum up ... Let me check and get back to you.</b></p>' +
+        '<p><b>In an interview:</b> <b>I have worked as ... for five years. I was responsible for ... One of my main achievements was ... I am particularly good at ... I would like to develop my skills in ...</b> Give a short example for each claim.</p>' +
+        '<p><b>Asking your own questions:</b> <b>What would a typical day look like? Could you tell me about the team? What are the next steps?</b></p>',
+      examples: ['Could you tell me what time the meeting starts?', 'Would you mind sending me the file?', 'I was responsible for a team of five.', 'Let me check and get back to you.']
+    },
+    exercises: [
+      mc('Which is a correct indirect question?', ['Could you tell me where the room is?', 'Could you tell me where is the room?', 'Could you tell me where does the room is?', 'Could you tell me where the room?'], 'Could you tell me where the room is?', 'indirect questions'),
+      mc('Do you know what time ___ ?', ['the meeting starts', 'does the meeting start', 'starts the meeting', 'the meeting does start'], 'the meeting starts', 'indirect questions'),
+      mc('Which request is the most polite?', ['Would you mind sending me the file?', 'Send me the file.', 'You send me the file.', 'I want the file.'], 'Would you mind sending me the file?', 'polite requests'),
+      mc('"Let me check and get back to you." means ___.', ['I will find out and reply later', 'I do not want to answer', 'I am leaving now', 'I will check your work'], 'I will find out and reply later', 'meetings'),
+      fill('Could you tell me ___ the train leaves?', ['when', 'what time'], 'indirect questions'),
+      fill('I was ___ for a team of five people.', ['responsible'], 'interview'),
+      fill('Would you ___ sending me the file?', ['mind'], 'polite requests'),
+      mc('In an interview, "my main achievement was..." introduces ___.', ['something you are proud of', 'a weakness', 'a salary question', 'a joke'], 'something you are proud of', 'interview'),
+      mc('Which sentence is a good way to disagree politely?', ['I see what you mean, but I think we need more time.', 'You are wrong.', 'No way.', 'That is silly.'], 'I see what you mean, but I think we need more time.', 'meetings'),
+      mc('"To sum up" is used ___.', ['at the end to give a summary', 'at the start to greet', 'to ask a question', 'to disagree'], 'at the end to give a summary', 'meetings'),
+      order(['Could', 'you', 'tell', 'me', 'where', 'the', 'room', 'is'], ['Could you tell me where the room is'], 'indirect questions'),
+      order(['I', 'have', 'five', 'years', 'of', 'experience'], ['I have five years of experience'], 'interview'),
+      typed('Translate: Toplantının saat kaçta başladığını biliyor musunuz?', ['Do you know what time the meeting starts', 'Do you know what time the meeting begins'], 'indirect questions'),
+      typed('Translate: Kontrol edip size dönüş yapacağım.', ['Let me check and get back to you', 'I will check and get back to you'], 'meetings'),
+      match([['agenda', 'gündem'], ['strength', 'güçlü yön'], ['achievement', 'başarı'], ['salary', 'maaş']], 'vocab')
+    ],
+    listening: [
+      lmc('Could you tell me what time the meeting starts?', ['Could you tell me what time the meeting starts?', 'Could you tell me what time does the meeting start?', 'Could you tell me what time the meeting started?', 'Could you tell me when the meeting ends?'], 'Could you tell me what time the meeting starts?', 'indirect questions'),
+      lmc('Let me check and get back to you.', ['Let me check and get back to you.', 'Let me check and come back to you.', 'Let me checking and get back to you.', 'Let me see and get you back.'], 'Let me check and get back to you.', 'meetings'),
+      dict('Would you mind sending me the file?'),
+      dict('I was responsible for a team of five people.')
+    ],
+    speaking: [
+      speak('Could you tell me what time the meeting starts?', 'Toplantının saat kaçta başladığını söyler misiniz?'),
+      speak('I have five years of experience in customer service.', 'Müşteri hizmetlerinde beş yıllık deneyimim var.'),
+      speak('One of my main achievements was the launch of a new product.', 'Ana başarılarımdan biri yeni bir ürünün lansmanıydı.'),
+      speak('Let me check and get back to you.', 'Kontrol edip size döneceğim.')
+    ],
+    reading: {
+      text: 'Interview notes\nTo: Amira\nFrom: Jo\nYour interview is on Thursday at 10.30. Please arrive ten minutes early and ask for me at reception.\nThe panel will probably ask you about your experience and what you did in your last job. Give a short example for each point, for example: "I was responsible for ordering stock, and I reduced waste by 15 per cent."\nThey may also ask about your strengths and weaknesses. Be honest, but show how you are working to improve. At the end, they will ask whether you have any questions. Prepare two, such as: "What would a typical day look like?" and "What are the next steps?"\nGood luck!',
+      glossary: [['panel', 'mülakat kurulu'], ['stock', 'stok'], ['waste', 'israf']],
+      questions: [
+        rq('When is the interview?', ['Thursday at 10.30', 'Thursday at 9.30', 'Friday at 10.30', 'Monday at 10.30'], 'Thursday at 10.30'),
+        rq('What should Amira give for each point?', ['a short example', 'a long speech', 'a letter', 'a certificate'], 'a short example'),
+        rq('What should she prepare for the end?', ['two questions', 'a presentation', 'a CV', 'a gift'], 'two questions')
+      ]
+    },
+    writing: {
+      prompt: 'Write a cover email for a job (about 130 words). Say why you are writing, describe two pieces of experience with an example, state one strength, and ask politely for an interview. (120 to 140 words)',
+      promptTR: 'Bir iş için yaklaşık 130 kelimelik bir ön yazı e-postası yaz. Neden yazdığını söyle, örnekle iki deneyimini anlat, bir güçlü yönünü belirt ve kibarca mülakat iste. (120-140 kelime)',
+      minWords: 90,
+      checklist: ['Subject line ve resmi selamlama var', 'İki deneyimi örnekle anlattım', 'Bir güçlü yön belirttim', 'Kibar bir istekle bitirdim (Would it be possible ...)']
+    }
+  });
+
+  def('4.11', {
+    can: 'I can give and defend an opinion, agree and disagree politely, and use cautious language to sound balanced.',
+    vocab: [
+      v('opinion', 'görüş', 'In my opinion, it is too expensive.', 'Bence çok pahalı.'),
+      v('argument', 'argüman, tartışma', 'That is a strong argument.', 'Bu güçlü bir argüman.'),
+      v('claim', 'iddia etmek', 'He claims that it is safe.', 'Güvenli olduğunu iddia ediyor.'),
+      v('evidence', 'kanıt', 'What is your evidence?', 'Kanıtınız nedir?'),
+      v('tend to', 'eğilimi olmak', 'People tend to forget names.', 'İnsanlar isimleri unutma eğilimindedir.'),
+      v('to some extent', 'bir ölçüde', 'To some extent, I agree.', 'Bir ölçüde katılıyorum.'),
+      v('generally', 'genellikle', 'Generally, prices are rising.', 'Genellikle fiyatlar yükseliyor.'),
+      v('it seems that', 'öyle görünüyor ki', 'It seems that people prefer online shopping.', 'İnsanlar internetten alışverişi tercih ediyor gibi.'),
+      v('point out', 'belirtmek', 'She pointed out a problem.', 'Bir soruna dikkat çekti.'),
+      v('concerned', 'endişeli', 'I am concerned about the cost.', 'Maliyet konusunda endişeliyim.'),
+      v('convinced', 'ikna olmuş', 'I am not convinced.', 'İkna olmadım.'),
+      v('fair point', 'haklı nokta', 'That is a fair point.', 'Bu haklı bir nokta.')
+    ],
+    grammar: {
+      title: 'Opinions, agreeing and disagreeing, and cautious (hedged) language',
+      html: '<p><b>Giving an opinion:</b> <b>In my opinion, ... / As far as I am concerned, ... / I would argue that ... / It seems to me that ...</b></p>' +
+        '<p><b>Agreeing:</b> <b>I completely agree. That is a fair point. I see what you mean. You are right about that.</b></p>' +
+        '<p><b>Partly agreeing:</b> <b>To some extent, I agree, but ... I take your point, however ... You may be right, but ...</b></p>' +
+        '<p><b>Disagreeing politely:</b> <b>I am afraid I do not agree. I am not convinced that ... I see it differently.</b> Avoid: You are wrong.</p>' +
+        '<p><b>Hedging</b> (cautious language) makes a claim less strong and more accurate: <b>It seems that ... / It appears that ... / People tend to ... / This may / might / could ... / Generally, ... / In most cases, ... / Some people say that ...</b></p>' +
+        '<p><b>Compare:</b> <b>Young people do not read books.</b> (too strong) → <b>Young people tend to read fewer books than before.</b> (more accurate)</p>' +
+        '<p><b>Giving reasons:</b> <b>The main reason is that ... For example, ... This is because ... Evidence suggests that ...</b></p>',
+      examples: ['In my opinion, the price is too high.', 'To some extent, I agree with you.', 'People tend to forget names.', 'I am not convinced that it will work.']
+    },
+    exercises: [
+      mc('Which sentence is more cautious?', ['People tend to forget names.', 'People always forget names.', 'Everybody forgets names.', 'Nobody remembers names.'], 'People tend to forget names.', 'hedging'),
+      mc('Which is a polite way to disagree?', ['I am afraid I do not agree.', 'You are wrong.', 'No.', 'That is stupid.'], 'I am afraid I do not agree.', 'disagreeing'),
+      mc('"To some extent, I agree." means ___.', ['I partly agree', 'I do not agree at all', 'I agree completely', 'I have no opinion'], 'I partly agree', 'agreeing'),
+      mc('"That is a fair point" means ___.', ['you have said something reasonable', 'you are wrong', 'this is a game', 'I am leaving'], 'you have said something reasonable', 'agreeing'),
+      fill('In my ___, the price is too high.', ['opinion'], 'opinions'),
+      fill('It ___ that people prefer online shopping.', ['seems', 'appears'], 'hedging'),
+      mc('"I am not convinced" means ___.', ['I am not sure it is right', 'I am sure', 'I am angry', 'I do not hear'], 'I am not sure it is right', 'disagreeing'),
+      mc('Which phrase gives a reason?', ['The main reason is that ...', 'To sum up ...', 'On the other hand ...', 'By the way ...'], 'The main reason is that ...', 'reasons'),
+      mc('Which word makes a claim weaker (more cautious)?', ['may', 'always', 'never', 'must'], 'may', 'hedging'),
+      mc('"He claims that it is safe." means ___.', ['he says it is safe, but it may not be true', 'it is certainly safe', 'it is not safe', 'he checked it'], 'he says it is safe, but it may not be true', 'vocab'),
+      order(['To', 'some', 'extent', 'I', 'agree', 'with', 'you'], ['To some extent I agree with you'], 'agreeing'),
+      order(['It', 'seems', 'that', 'people', 'prefer', 'online', 'shopping'], ['It seems that people prefer online shopping'], 'hedging'),
+      typed('Translate: Bence fiyat çok yüksek.', ['In my opinion the price is too high', 'In my opinion the price is too high'], 'opinions'),
+      typed('Make this more cautious: Young people do not read books. (use tend to)', ['Young people tend not to read books', 'Young people tend to read fewer books', 'Young people tend to read less'], 'hedging'),
+      match([['opinion', 'görüş'], ['claim', 'iddia etmek'], ['concerned', 'endişeli'], ['generally', 'genellikle']], 'vocab')
+    ],
+    listening: [
+      lmc('To some extent, I agree with you.', ['To some extent, I agree with you.', 'I completely agree with you.', 'I do not agree with you.', 'To some extent, I disagree with you.'], 'To some extent, I agree with you.', 'agreeing'),
+      lmc('It seems that people prefer online shopping.', ['It seems that people prefer online shopping.', 'It is certain that people prefer online shopping.', 'It seems that people prefer shopping online.', 'People never prefer online shopping.'], 'It seems that people prefer online shopping.', 'hedging'),
+      dict('I am afraid I do not agree.'),
+      dict('That is a fair point, but I am not convinced.')
+    ],
+    speaking: [
+      speak('In my opinion, the price is too high.', 'Bence fiyat çok yüksek.'),
+      speak('To some extent, I agree with you.', 'Bir ölçüde sana katılıyorum.'),
+      speak('I see what you mean, but I am not convinced.', 'Ne demek istediğini anlıyorum ama ikna olmadım.'),
+      speak('People tend to forget names.', 'İnsanlar isimleri unutma eğilimindedir.')
+    ],
+    reading: {
+      text: 'Social media: good or bad?\nMany people argue that social media is harmful. They claim that it makes young people anxious and wastes time. To some extent, this is true. Studies suggest that people who spend several hours a day online tend to feel less happy.\nHowever, it would be unfair to say that social media is always bad. It helps families stay in touch, and it can be a source of news and support. For example, many new parents say they learned a great deal from online groups.\nIn my opinion, the problem is not the technology but the way we use it. If we use it carefully, it can be useful. If we scroll for hours, it may well do harm.',
+      glossary: [['anxious', 'kaygılı'], ['unfair', 'haksız'], ['scroll', 'kaydırmak']],
+      questions: [
+        rq('What do critics claim?', ['Social media makes young people anxious.', 'Social media is free.', 'Social media is new.', 'Social media is too slow.'], 'Social media makes young people anxious.'),
+        rq('What does the writer say is helpful about social media?', ['It helps families stay in touch.', 'It makes money.', 'It replaces schools.', 'It is quiet.'], 'It helps families stay in touch.'),
+        rq('What is the writer\'s main opinion?', ['The way we use it matters.', 'It should be banned.', 'It is always good.', 'Nobody should use it.'], 'The way we use it matters.')
+      ]
+    },
+    writing: {
+      prompt: 'Write an opinion text (about 150 words) on a topic you have views about, for example mobile phones in schools, public transport or working from home. State your view, give two reasons with examples, mention an opposing view and respond to it politely. Use cautious language. (140 to 160 words)',
+      promptTR: 'Görüşün olan bir konuda (örneğin okulda cep telefonu, toplu taşıma veya evden çalışma) yaklaşık 150 kelimelik bir görüş yazısı yaz. Görüşünü belirt, örneklerle iki neden ver, karşıt bir görüşü anlat ve ona kibarca yanıt ver. Temkinli bir dil kullan. (140-160 kelime)',
+      minWords: 100,
+      checklist: ['Görüşümü açıkça yazdım', 'İki neden ve örnek verdim', 'Karşıt görüşü anlatıp yanıtladım', 'tend to, may, it seems gibi temkinli ifadeler kullandım']
+    }
+  });
+
+  def('4.12', {
+    can: 'I can hold a 10 minute conversation and write a 200 word text, using B2 grammar and linking. This is the B2 review.',
+    vocab: [
+      v('consolidate', 'pekiştirmek', 'I want to consolidate what I have learned.', 'Öğrendiklerimi pekiştirmek istiyorum.'),
+      v('range', 'çeşitlilik, kapsam', 'A wide range of vocabulary helps.', 'Geniş bir kelime dağarcığı yardımcı olur.'),
+      v('accurate', 'doğru, isabetli', 'Try to be accurate and fluent.', 'Hem doğru hem akıcı olmaya çalış.'),
+      v('fluent', 'akıcı', 'She is fluent in three languages.', 'Üç dilde akıcı.'),
+      v('accuracy', 'doğruluk', 'Accuracy matters in writing.', 'Yazıda doğruluk önemlidir.'),
+      v('structure', 'yapı', 'Good structure makes a text clear.', 'İyi yapı bir metni anlaşılır kılar.'),
+      v('paraphrase', 'başka sözcüklerle ifade etmek', 'Can you paraphrase that?', 'Bunu başka sözcüklerle söyleyebilir misin?'),
+      v('precise', 'kesin, net', 'Be precise with numbers.', 'Rakamlarda net ol.'),
+      v('summarise', 'özetlemek', 'Please summarise the article.', 'Lütfen makaleyi özetle.'),
+      v('rephrase', 'yeniden ifade etmek', 'Let me rephrase the question.', 'Soruyu yeniden ifade edeyim.'),
+      v('keep going', 'devam etmek', 'Keep going even when it is hard.', 'Zor olsa bile devam et.'),
+      v('take for granted', 'değerini bilmemek', 'We take clean water for granted.', 'Temiz suyun değerini bilmiyoruz.')
+    ],
+    grammar: {
+      title: 'B2 review: tenses, conditionals, modals, passive, reporting and linking',
+      html: '<p><b>Narrative:</b> past simple (events), past continuous (background), past perfect (earlier). <b>When I arrived, they had already left.</b></p>' +
+        '<p><b>Present perfect:</b> simple for results, continuous for duration. <b>I have written three emails. I have been writing all morning.</b></p>' +
+        '<p><b>Future:</b> <b>This time next week I will be travelling. By Friday I will have finished.</b></p>' +
+        '<p><b>Conditionals:</b> <b>If I had more time, I would learn Italian. If I had left earlier, I would have caught the train. I wish I had studied harder.</b></p>' +
+        '<p><b>Deduction:</b> <b>He must have missed the bus. She can\'t be at home. They might have forgotten.</b></p>' +
+        '<p><b>Relative clauses:</b> <b>My sister, who lives in Leeds, is a teacher. The man whose car was stolen called the police.</b></p>' +
+        '<p><b>Passive and causative:</b> <b>The parcel will be delivered tomorrow. I had my phone repaired.</b></p>' +
+        '<p><b>Reporting:</b> <b>She promised to call. He denied taking the money. She asked where I lived.</b></p>' +
+        '<p><b>Linking and hedging:</b> although, despite, whereas, however, as a result; it seems that, tend to, to some extent.</p>' +
+        '<p><b>Fluency tips:</b> when you do not know a word, paraphrase: <b>It is a thing you use to ...</b> Use fillers: <b>Well, let me think ... What I mean is ...</b></p>',
+      examples: ['If I had more time, I would learn Italian.', 'She must have missed the bus.', 'He denied taking the money.', 'Although it was raining, we went out.']
+    },
+    exercises: [
+      mc('When I arrived, they ___ already left.', ['had', 'have', 'were', 'did'], 'had', 'narrative'),
+      mc('I ___ for this company since 2018.', ['have worked', 'worked', 'am working', 'had worked'], 'have worked', 'present perfect'),
+      mc('By the end of the year, I ___ my degree.', ['will have finished', 'will be finishing', 'finish', 'am finished'], 'will have finished', 'future'),
+      mc('If she had known, she ___ helped.', ['would have', 'will have', 'would', 'had'], 'would have', 'conditionals'),
+      mc('He ___ have missed the bus. (I am almost sure)', ['must', 'can\'t', 'should', 'would'], 'must', 'deduction'),
+      mc('The man ___ car was stolen called the police.', ['whose', 'who', 'which', 'what'], 'whose', 'relative clauses'),
+      mc('The parcel ___ tomorrow.', ['will be delivered', 'will deliver', 'has delivering', 'delivers'], 'will be delivered', 'passive'),
+      mc('She ___ to call me tonight.', ['promised', 'denied', 'suggested', 'admitted'], 'promised', 'reporting'),
+      mc('___ the rain, we went out.', ['Despite', 'Although', 'Because', 'Whereas'], 'Despite', 'linking'),
+      mc('Which sentence is most cautious?', ['People tend to forget names.', 'People always forget names.', 'Everybody forgets names.', 'Names are never remembered.'], 'People tend to forget names.', 'hedging'),
+      fill('I wish I ___ studied harder.', ['had'], 'conditionals'),
+      fill('Could you tell me where the room ___ ?', ['is'], 'indirect questions'),
+      order(['If', 'I', 'had', 'more', 'time', 'I', 'would', 'learn', 'Italian'], ['If I had more time I would learn Italian'], 'conditionals'),
+      typed('Translate: Otobüsü kaçırmış olmalı.', ['He must have missed the bus', 'She must have missed the bus'], 'deduction'),
+      match([['range', 'çeşitlilik'], ['fluent', 'akıcı'], ['paraphrase', 'başka sözcüklerle ifade etmek'], ['precise', 'kesin']], 'vocab')
+    ],
+    listening: [
+      lmc('If she had known, she would have helped.', ['If she had known, she would have helped.', 'If she knew, she would help.', 'If she knows, she will help.', 'If she had known, she helped.'], 'If she had known, she would have helped.', 'conditionals'),
+      lmc('By Friday I will have finished the report.', ['By Friday I will have finished the report.', 'By Friday I will be finishing the report.', 'On Friday I finished the report.', 'By Friday I have finished the report.'], 'By Friday I will have finished the report.', 'future'),
+      dict('She must have forgotten about the meeting.'),
+      dict('Although it was raining, we went out.')
+    ],
+    speaking: [
+      speak('I have been learning English for several years, and I use it every day.', 'Birkaç yıldır İngilizce öğreniyorum ve her gün kullanıyorum.'),
+      speak('If I had more time, I would read more books in English.', 'Daha çok vaktim olsa İngilizce daha çok kitap okurdum.'),
+      speak('To some extent, I agree, but I am not completely convinced.', 'Bir ölçüde katılıyorum ama tamamen ikna olmadım.'),
+      speak('Overall, I feel more confident than I did a year ago.', 'Genel olarak bir yıl öncesine göre kendimi daha güvende hissediyorum.')
+    ],
+    reading: {
+      text: 'A year of English\nA year ago I could understand most of what people said, but I found it hard to join a conversation. I had been learning for a long time, yet I rarely spoke.\nSince then I have been talking to someone every day, even for five minutes. At first I made many mistakes, and I felt embarrassed. However, I noticed that people did not mind, and they often helped me find the right word.\nIf I had started speaking earlier, I would have improved faster. Still, I am proud of my progress. My teacher says I have become more fluent, although my accuracy still needs work. Overall, the most important lesson was simple: it is better to speak imperfectly than not to speak at all.',
+      glossary: [['embarrassed', 'utanmış'], ['lesson', 'ders'], ['imperfectly', 'kusurlu biçimde']],
+      questions: [
+        rq('What was difficult a year ago?', ['joining a conversation', 'understanding people', 'reading books', 'writing emails'], 'joining a conversation'),
+        rq('What has the writer been doing since then?', ['talking to someone every day', 'reading every day', 'studying grammar only', 'living abroad'], 'talking to someone every day'),
+        rq('What does her teacher say needs work?', ['accuracy', 'fluency', 'listening', 'pronunciation of numbers'], 'accuracy')
+      ]
+    },
+    writing: {
+      prompt: 'Write an essay or letter of about 200 words on your language learning or your experience of life in the UK. Include a past story, a present change, a future plan, one conditional sentence, one passive, one reported statement and at least four linkers. (190 to 210 words)',
+      promptTR: 'Dil öğrenme sürecin veya Birleşik Krallık\'taki yaşam deneyimin hakkında yaklaşık 200 kelimelik bir deneme veya mektup yaz. Geçmişten bir hikâye, şimdiki bir değişim, gelecek bir plan, bir koşul cümlesi, bir edilgen yapı, bir aktarılan cümle ve en az dört bağlaç kullan. (190-210 kelime)',
+      minWords: 130,
+      checklist: ['Geçmiş, şimdi ve gelecek bölümleri var', 'Bir conditional cümle kullandım', 'Bir passive ve bir reported statement kullandım', 'En az dört bağlaç kullandım']
+    }
+  });
+
   /* ---------- Placement test (4 bands x 5 items) ---------- */
   var PLACEMENT = [
     [
@@ -2911,6 +3787,10 @@
     'A2': {
       speak: [speak('Yesterday I went to the shop.', 'Dün markete gittim.'), speak('I would like an appointment, please.', 'Randevu almak istiyorum, lütfen.'), speak('I am going to visit my friend.', 'Arkadaşımı ziyaret edeceğim.')],
       writing: { prompt: 'Write an email of 60 to 80 words to a friend about your weekend.', promptTR: 'Bir arkadaşına hafta sonunu anlatan 60-80 kelimelik bir e-posta yaz.', minWords: 55, checklist: ['Geçmiş zaman doğru', 'Selamlama ve kapanış var', 'Bağlaçlar (and, but, because)'] }
+    },
+    'B2': {
+      speak: [speak('If I had left earlier, I would have caught the train.', 'Daha erken çıksaydım treni yakalardım.'), speak('Although it was difficult, I have made a lot of progress.', 'Zor olmasına rağmen çok ilerleme kaydettim.'), speak('To some extent, I agree, but I am not completely convinced.', 'Bir ölçüde katılıyorum ama tamamen ikna olmadım.')],
+      writing: { prompt: 'Write an opinion essay of 180 to 200 words on a topic of your choice. Give your view, two reasons with examples, an opposing view and a conclusion.', promptTR: 'Seçtiğin bir konuda 180-200 kelimelik bir görüş yazısı yaz. Görüşünü, örneklerle iki nedeni, karşıt bir görüşü ve bir sonucu ver.', minWords: 130, checklist: ['Görüşümü açıkça yazdım', 'İki neden ve örnek verdim', 'Karşıt görüşü ele aldım', 'Bağlaçlar ve temkinli dil kullandım'] }
     },
     'B1': {
       speak: [speak('I have lived here for two years.', 'İki yıldır burada yaşıyorum.'), speak('If I had more time, I would learn another language.', 'Daha çok vaktim olsaydı başka bir dil öğrenirdim.'), speak('I think it is a good idea because it saves time.', 'Bence iyi bir fikir çünkü zaman kazandırıyor.')],

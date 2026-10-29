@@ -156,10 +156,10 @@ function doUnit(d, id) {
   d.click(new RegExp(d.t('test') + '$')); d.finishQuiz(true); d.click(d.t('continue'));
 }
 
-/* The reference pack relabelled as unit 4.1 (a unit the app does not have), so tests can prove that packs load. */
+/* The reference pack relabelled as unit 5.1 (a unit the app does not have), so tests can prove that packs load. */
 function readPack() {
   const p = JSON.parse(fs.readFileSync(path.join(ROOT, 'packs', 'unit-1.5-daily-routine.json'), 'utf8'));
-  Object.assign(p.units[0], { id: '4.1', stage: 'B1.2', title: 'Extra unit', titleTR: 'Ek ünite' });
+  Object.assign(p.units[0], { id: '5.1', stage: 'C1.1', title: 'Extra unit', titleTR: 'Ek ünite' });
   return p;
 }
 

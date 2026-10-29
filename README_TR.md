@@ -16,7 +16,7 @@ Tarayıcıda çalışan, kurulum gerektirmeyen İngilizce çalışma uygulaması
 | İlerleme | Beceri doğrulukları, seri, puan, Claude projesi için "Progress Snapshot" |
 | Profiller | Aynı cihazda birden fazla öğrenci, her birinin ilerlemesi ayrı |
 
-İçerik: Stage 0 (0.1, 0.2) ile A1, A2 ve B1 dahil müfredatın 36 ünitesinin tamamı (0.1 ila 3.12) uygulamada hazır. `packs/unit-1.5-daily-routine.json` paket biçimine örnek olarak duruyor (aynı içerik, yüklemeye gerek yok). Yeni ünite veya B2 gibi ek içerik için Claude projesinde paket ürettirip yüklersin (10_app_content_pack_spec.md).
+İçerik: Stage 0 (0.1, 0.2) ile A1, A2 ve B1 dahil müfredatın 36 ünitesi (0.1 ila 3.12) ve ek olarak B2 için 12 ünite (4.1 ila 4.12) uygulamada hazır. `packs/unit-1.5-daily-routine.json` paket biçimine örnek olarak duruyor (aynı içerik, yüklemeye gerek yok). B2 sonrası veya yeni ek içerik için Claude projesinde paket ürettirip yüklersin (10_app_content_pack_spec.md).
 
 ## Profiller
 - Her öğrencinin kendi profili vardır: ilerleme, seri, kelime tekrarı (SRS), ödev, sınavlar, yazılar, arayüz dili, konuşma hızı ve ses ayrı tutulur.
@@ -118,4 +118,4 @@ Uygulamanın kendisi hiçbir paket gerektirmez. Testler için Node.js 20 veya ü
 - Sesli okumanın kalitesi cihazın İngilizce seslerine bağlıdır.
 - Veriler cihazlar arasında eşitlenmez. Başka cihaza geçmek için yedek dosyası kullanılır.
 - iPhone, uzun süre açılmayan sitelerin verisini silebilir. Ana ekrana eklenen uygulamada bu risk düşüktür, yine de düzenli yedek al.
-- Aşama sınavları, ilgili aşamanın tüm üniteleri bitince açılır (Stage 0, A1, A2 ve B1 sınavları).
+- Aşama sınavları, ilgili aşamanın tüm üniteleri bitince açılır (Stage 0, A1, A2, B1 ve B2 sınavları).

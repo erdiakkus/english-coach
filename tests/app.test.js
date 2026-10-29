@@ -86,11 +86,11 @@ test('stage exam S0 can be taken and passed after both units', async function ()
   assert.match(d.text(), new RegExp(d.t('examPassed')));
 });
 
-test('content pack merges and makes a new unit (4.1) playable', async function () {
+test('content pack merges and makes a new unit (5.1) playable', async function () {
   const d = await boot();
   assert.deepEqual(d.EC.mergePack(readPack()), []);
   d.EC.go('path');
-  const row = Array.prototype.slice.call(d.doc.querySelectorAll('.unit')).filter(function (b) { return b.textContent.indexOf('4.1') === 0; })[0];
+  const row = Array.prototype.slice.call(d.doc.querySelectorAll('.unit')).filter(function (b) { return b.textContent.indexOf('5.1') === 0; })[0];
   assert.ok(row.textContent.indexOf(d.t('soon')) < 0);
 });
 
@@ -104,10 +104,10 @@ test('snapshot keeps the Claude project format', async function () {
 });
 
 
-test('all 36 built-in units can be completed and the four stage exams open and pass', async function () {
+test('all 48 built-in units can be completed and the five stage exams open and pass', async function () {
   const d = await boot();
   const C = d.win.CONTENT;
-  assert.equal(C.units.length, 36);
+  assert.equal(C.units.length, 48);
   C.units.forEach(function (u) { assert.ok(u.vocab && u.exercises && u.grammar, 'unit ' + u.id + ' has content'); });
   C.units.forEach(function (u) {
     doUnit(d, u.id);
@@ -115,8 +115,8 @@ test('all 36 built-in units can be completed and the four stage exams open and p
   });
   d.EC.go('exams');
   const starts = d.buttons().filter(function (b) { return b.textContent === d.t('start'); });
-  assert.equal(starts.length, 4, 'S0, A1, A2 and B1 stage exams are open');
-  ['S0', 'A1', 'A2', 'B1'].forEach(function (g, i) {
+  assert.equal(starts.length, 5, 'S0, A1, A2, B1 and B2 stage exams are open');
+  ['S0', 'A1', 'A2', 'B1', 'B2'].forEach(function (g, i) {
     d.EC.go('exams');
     d.buttons().filter(function (b) { return b.textContent === d.t('start'); })[i].click();
     d.finishQuiz(true);

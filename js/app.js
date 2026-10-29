@@ -967,7 +967,7 @@
     var cards = [];
     cards.push(h('div', { class: 'card' }, h('h2', {}, t('placementCard')), h('p', { class: 'small muted' }, S.placed ? ((S.lang === 'tr' ? 'Son sonuç: ünite ' : 'Last result: unit ') + S.placed.start + ' (' + S.placed.d + ')') : t('placementSub')),
       h('button', { class: 'btn' + (S.placed ? ' secondary' : ''), onclick: startPlacement }, S.placed ? t('retry') : t('placementCta'))));
-    var stageCards = ['S0', 'A1', 'A2', 'B1'].map(function (g) {
+    var stageCards = ['S0', 'A1', 'A2', 'B1', 'B2'].map(function (g) {
       var ok = stageEligible(g), rec = S.exams[g];
       return h('div', { class: 'card' }, h('div', { class: 'row sp' }, h('h3', {}, (g === 'S0' ? 'Stage 0' : g)), rec ? h('span', { class: 'badge ' + (rec.passed ? 'done' : '') }, rec.passed ? '✓ ' + rec.a + '%' : rec.a + '%') : null),
         ok ? h('button', { class: 'btn', onclick: function () { startStageExam(g); } }, t('start')) : h('p', { class: 'small muted' }, t('stageExamRule')));
